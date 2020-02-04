@@ -13,7 +13,7 @@ body a {
   color: #3c4858;
 }
 body a:hover {
-  color: #1abc9c;
+  color: #3F51B5;
 }
 .hover-with-bg {
   display: inline-block;
@@ -84,10 +84,10 @@ body a:hover {
   color: white;
 }
 .top-nav-collapse {
-  background-color: #009688;
+  background-color: #303F9F;
 }
 .navbar-col-show {
-  background-color: #009688;
+  background-color: #303F9F;
 }
 @media (max-width: 768px) {
   .navbar {
@@ -491,7 +491,7 @@ h6::before {
 }
 .tocbot-active-link {
   font-weight: 600;
-  color: #1abc9c;
+  color: #3F51B5;
 }
 .tocbot-is-collapsible {
   max-height: 1000px;
@@ -560,5 +560,5 @@ h6::before {
   font-weight: 350;
 }
 .tagcloud a:hover {
-  color: #1abc9c !important;
+  color: #3F51B5 !important;
 }
