@@ -118,7 +118,13 @@
             <span class="h2" id="subtitle">
               
             </span>
-
+		  <!-- 置顶插件添加 开始 -->
+            {% if post.top %}
+               <font color="#1fa67a"><i class="fa fa-arrow-up"></i>
+               <strong>Top</strong></font>
+               <span class="post-meta-divider">|</span>
+             {% endif %}
+         <!-- 置顶插件添加 结束 -->
             
               <br>
               
@@ -186,13 +192,6 @@
             <hr>
           </div>
           <br>
-		  <!-- 置顶插件添加 开始 -->
-            {% if post.top %}
-               <font color="#1fa67a"><i class="fa fa-arrow-up"></i>
-               <strong>Top</strong></font>
-               <span class="post-meta-divider">|</span>
-             {% endif %}
-         <!-- 置顶插件添加 结束 -->
           <div>
             <p>
             
