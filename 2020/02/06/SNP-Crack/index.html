@@ -167,8 +167,6 @@
     
       
 
-<!-- page top -->
-
 <div class="container-fluid">
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
@@ -188,6 +186,13 @@
             <hr>
           </div>
           <br>
+		  <!-- 置顶插件添加 开始 -->
+            {% if post.top %}
+               <font color="#1fa67a"><i class="fa fa-arrow-up"></i>
+               <strong>Top</strong></font>
+               <span class="post-meta-divider">|</span>
+             {% endif %}
+         <!-- 置顶插件添加 结束 -->
           <div>
             <p>
             
