@@ -18,6 +18,16 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
+  <script>
+    (function(){
+        if('{{ page.password }}'){
+            if (prompt('请输入文章密码') !== '{{ page.password }}'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+  </script>
   <title>归档 ~ 维他入我心</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
@@ -139,12 +149,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 5 篇文章</p>
+  <p class="h4">共计 6 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/02/06/SNP-Crack/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">SNP-Crack</span>
+      <span style="float: right;">02-06</span>
+    </a>
+  
     
     <a href="/2020/02/06/%E8%B6%85%E7%BA%B2%E7%9A%84%E9%AB%98%E8%80%83%E7%89%A9%E7%90%86%E9%A2%98/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">超纲的高考物理题</span>

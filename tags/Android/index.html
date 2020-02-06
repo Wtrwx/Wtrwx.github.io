@@ -18,6 +18,16 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
+  <script>
+    (function(){
+        if('{{ page.password }}'){
+            if (prompt('请输入文章密码') !== '{{ page.password }}'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+  </script>
   <title>标签 - Android ~ 维他入我心</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
@@ -139,12 +149,18 @@
                 
 
 <div class="list-group">
-<!--  <p class="h4">共计 1 篇文章</p>-->
+<!--  <p class="h4">共计 2 篇文章</p>-->
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/02/06/SNP-Crack/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">SNP-Crack</span>
+      <span style="float: right;">02-06</span>
+    </a>
+  
     
     <a href="/2020/02/04/QQBrowser-signature-crack/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">QQ浏览器签名校验破解</span>
