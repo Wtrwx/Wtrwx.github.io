@@ -206,7 +206,11 @@ Github Page和Hexo到底是如何运行的？<br />
 复制后<br />
 打开GitHub，右上角设置，找到ssh，将刚刚复制的添加进去。<br />
 11.用编辑器打开你解压的目录下的_config.yml，在最后添加以下代码<br />
-<code>deploy: type: git repo: git@github.com:你的github用户名/你的github用户名.github.io.git branch: master</code><br />
+``deploy:</p>
+<p>type: git</p>
+<p>repo: <a href="mailto:git@github.com">git@github.com</a>:你的github用户名/你的github用户名.github.io.git</p>
+<p>branch: master<br />
+``<br />
 12.安装部署<br />
 <code>npm install hexo-deployer-git --save</code><br />
 13.部署到Github Page<br />
