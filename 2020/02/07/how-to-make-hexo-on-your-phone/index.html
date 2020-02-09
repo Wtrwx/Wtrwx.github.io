@@ -132,7 +132,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    515 字
+                    534 字
                   </span>&nbsp;
                 
 
@@ -180,34 +180,46 @@ Github Page和Hexo到底是如何运行的？<br />
 <p>1.酷安搜索安装<a href="https://www.coolapk.com/apk/com.termux" target="_blank" rel="noopener">Termux</a><br />
 以下内容最好在科学的上网条件下完成<br />
 2. 执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pkg install git</span><br><span class="line">pkg install nodejs-lts</span><br><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<p>在这期间需要输入y确认安装<br />
-3.注册一个Github账号（Gitee也可，并且国内访问速度快）<br />
-4. 创建一个新的仓库仓库的名字必须是 <strong><a href="http://xn--6qqv7i14ofosyrb.github.io" target="_blank" rel="noopener">你的用户名.github.io</a></strong><br />
-别的不要改<br />
-<img src="https://i.loli.net/2020/02/07/NUI8YTHeaSb4C9B.jpg" srcset="/img/loading.gif" alt="7.1.jpg" /><br />
-5. 为了方便你<strong>免ROOT</strong>操作您的博客目录<br />
-<strong>请务必注意以下操作</strong><br />
-下载我提供的<a href="https://pan.baidu.com/s/14XBLnu6wTeJvgjWCvjPN0Q" target="_blank" rel="noopener">hexo</a><br />
-6.采用MT管理器等文件管理器，将下好的zip解压到sd卡任意目录（推荐根目录）。<br />
-7.解压好后在Termux中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;sdcard&#x2F;blog</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>然后在浏览器中打开http://localhost:4000/测试<br />
+<pre class="highlight"><code class="">pkg install git
+pkg install nodejs-lts
+npm install hexo-cli -g
+npm install hexo --save```
+在这期间需要输入y确认安装
+3.注册一个Github账号（Gitee也可，并且国内访问速度快）
+4. 创建一个新的仓库仓库的名字必须是 **你的用户名.github.io**
+别的不要改
+![7.1.jpg](https://i.loli.net/2020/02/07/NUI8YTHeaSb4C9B.jpg)
+5. 为了方便你**免ROOT**操作您的博客目录
+**请务必注意以下操作**
+下载我提供的[hexo](https://pan.baidu.com/s/14XBLnu6wTeJvgjWCvjPN0Q)
+6.采用MT管理器等文件管理器，将下好的zip解压到sd卡任意目录（推荐根目录）。
+7.解压好后在Termux中输入
+</code></pre>
+<p>cd /sdcard/blog<br />
+hexo s```<br />
+然后在浏览器中打开http://localhost:4000/测试<br />
 出现以下界面即为成功。<br />
 <img src="https://i.loli.net/2020/02/07/73juXvcGVZ1IMiF.jpg" srcset="/img/loading.gif" alt="7.2.jpg" /><br />
 8.部署到GitHub<br />
 以此在Termux执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;github用户名&quot;</span><br><span class="line">git config --global user.email &quot;注册github的邮箱&quot;</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:github用户名&#x2F;github用户名.github.io.git</span><br></pre></td></tr></table></figure>
-<p>9.安装ssh服务<br />
-<code>pkg install openssh</code><br />
-10.RSA密钥<br />
-生成<code>ssh-keygen -t rsa -C &quot;注册Github的邮箱&quot;</code><br />
-读取<code>cat ~/.ssh/id_rsa.pub</code><br />
-复制后<br />
-打开GitHub，右上角设置，找到ssh，将刚刚复制的添加进去。<br />
-11.用编辑器打开你解压的目录下的_config.yml，在最后添加以下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">     type: git</span><br><span class="line">     repo: git@github.com:你的github用户名&#x2F;你的github用户名.github.io.git</span><br><span class="line">     branch: master</span><br></pre></td></tr></table></figure>
-<p>12.安装部署<br />
+<pre class="highlight"><code class="">git config --global user.name &quot;github用户名&quot;
+git config --global user.email &quot;注册github的邮箱&quot;
+git init
+git remote add origin git@github.com:github用户名/github用户名.github.io.git```
+9.安装ssh服务
+`pkg install openssh`
+10.RSA密钥
+生成`ssh-keygen -t rsa -C &quot;注册Github的邮箱&quot;`
+读取`cat ~/.ssh/id_rsa.pub`
+复制后
+打开GitHub，右上角设置，找到ssh，将刚刚复制的添加进去。
+11.用编辑器打开你解压的目录下的_config.yml，在最后添加以下代码
+</code></pre>
+<p>deploy:<br />
+type: git<br />
+repo: <a href="mailto:git@github.com">git@github.com</a>:你的github用户名/你的github用户名.github.io.git<br />
+branch: master```<br />
+12.安装部署<br />
 <code>npm install hexo-deployer-git --save</code><br />
 13.部署到Github Page<br />
 <code>hexo g -d</code><br />
