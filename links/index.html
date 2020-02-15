@@ -145,6 +145,7 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
 <div class="row links">
   
     <div class="card link-card col-lg-4 col-md-6 col-sm-12">
@@ -192,6 +193,44 @@
     </div>
   
 </div>
+<!-- Comments -->
+<div class="col-lg-12 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'false' === true;
+    var verify = 'false' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "iJ9YWur9WXEHRtV80LJLFOr2-gzGzoHsz",
+        app_key: "eGXXmoTvBtzHmwAzSNE6dD0g",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
               </div>
             </div>
           </div>
