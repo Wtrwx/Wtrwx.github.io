@@ -4,27 +4,13 @@
   
   
   <entry>
-    <title>关于三角函数</title>
-    <link href="/2020/02/20/about-Trigonometric-function/"/>
-    <url>/2020/02/20/about-Trigonometric-function/</url>
+    <title>mod-apks</title>
+    <link href="/2020/02/22/mod-apks/"/>
+    <url>/2020/02/22/mod-apks/</url>
     
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>数学</category>
-      
-    </categories>
+    <content type="html"><![CDATA[<hr /><h2 id="title-我参与开发修改的那些android-appdate-2020-02-22-181927categories-android-分类tags-android-破解top-9"><a class="markdownIt-Anchor" href="#title-我参与开发修改的那些android-appdate-2020-02-22-181927categories-android-分类tags-android-破解top-9"></a> title: 我参与开发/修改的那些Android app<br />date: 2020-02-22 18:19:27<br />categories: “Android” #分类<br />tags:<br />- Android<br />- 破解<br />top: 9</h2><h3 id="社交类"><a class="markdownIt-Anchor" href="#社交类"></a> 社交类</h3><ol><li>知乎V6.12.0_mipreinstall_noAd<br /><a href="https://www.lanzous.com/b02mrxt4d" target="_blank" rel="noopener">下载地址</a><br />密码:cfwl<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/11.1.jpg" srcset="/img/loading.gif" alt="11.1.jpg" /></li></ol><h3 id="工具类"><a class="markdownIt-Anchor" href="#工具类"></a> 工具类</h3><ol><li>SNP-Crack<br /><a href="https://www.lanzous.com/i93q9tg" target="_blank" rel="noopener">下载地址</a><br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/5.2.jpg" srcset="/img/loading.gif" alt="5.2.jpg" /></li></ol>]]></content>
     
     
-    <tags>
-      
-      <tag>数学</tag>
-      
-      <tag>三角函数</tag>
-      
-    </tags>
     
   </entry>
   
@@ -166,7 +152,7 @@
     <link href="/2020/02/07/R-I-P-lwl/"/>
     <url>/2020/02/07/R-I-P-lwl/</url>
     
-    <content type="html"><![CDATA[<p>R.I.P<br />李文亮，讲真话的人。<br />他用自己的生命证实了自己的清白，一个人讲了真话，却付出了这样的代价。<br />一名眼科医生，在被警方训诫后冲上了一线。二月一号确诊，五号病危，六号去世。但是在大陆，他活到了七号。<br /><img src="https://i.loli.net/2020/02/07/yvW3rb5kFhp7Hme.jpg" srcset="/img/loading.gif" alt="6.1.jpg" /><br />愿你的灵魂永安。<br />再一次悼念一位讲真话的人。</p>]]></content>
+    <content type="html"><![CDATA[<p>R.I.P<br />李文亮，讲真话的人。<br />他用自己的生命证实了自己的清白，一个人讲了真话，却付出了这样的代价。<br />一名眼科医生，在被警方训诫后冲上了一线。二月一号确诊，五号病危，六号去世。但是在大陆，他活到了七号。<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/special.jpg" srcset="/img/loading.gif" alt="special.jpg" /><br />愿你的灵魂永安。<br />再一次悼念一位讲真话的人。</p>]]></content>
     
     
     <categories>
@@ -185,7 +171,7 @@
     <link href="/2020/02/06/SNP-Crack/"/>
     <url>/2020/02/06/SNP-Crack/</url>
     
-    <content type="html"><![CDATA[<p>写在前面：本文产生的任何损失皆与作者无关！</p><p>本文仅适用于<strong>少年派5.2.2以下</strong>的版本。</p><p>声明：本教程并不包含恢复少年派服务并正常上课的部分，因为其违反了少年派使用协议，这意味着您进行以下操作后将<strong>不能正常上课</strong>，操作前请三思。</p><h5 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h5><p>1.一台带无线网卡的win7及以上的电脑<br />2.软件 360随身wifi、fiddler、软件白名单不为空的，书包内有网页的少年派账号<br />3.切换账号bug<br />4.一个修改好包名为白名单内包名，通过AndroidStudio等工具编译的少年派破解专用app<br />5.服务器</p><h5 id="二-破解"><a class="markdownIt-Anchor" href="#二-破解"></a> 二、破解</h5><p>1.利用切换账号bug登入账号。<br />2.进入书包找到一个。<br />3.根据网上教程配置好wifi热点和fiddler。<br />4.将少年派破解专用app上传至服务器。<br />5.打开网页，打开fiddler，断点设置为before requests。</p><p>开启断点，注入以下代码：</p><p><code>&lt;a download=&quot;文件名&quot; href=&quot;文件下载接口地址&quot;&gt;&lt;/a&gt;</code></p><p>取消断点，传回。<br />6.Pad上安装专用app，给予设备管理员权限后选择最后一项清除数据。</p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/2.1.jpg" srcset="/img/loading.gif" alt="5.1.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/5.2.jpg" srcset="/img/loading.gif" alt="5.2.jpg" /></p><p>7.等待恢复出厂设置完成，enjoy it!</p>]]></content>
+    <content type="html"><![CDATA[<p>写在前面：本文产生的任何损失皆与作者无关！</p><p>本文仅适用于<strong>少年派5.2.2以下</strong>的版本。</p><p>声明：本教程并不包含恢复少年派服务并正常上课的部分，因为其违反了少年派使用协议，这意味着您进行以下操作后将<strong>不能正常上课</strong>，操作前请三思。</p><h5 id="一-准备工作"><a class="markdownIt-Anchor" href="#一-准备工作"></a> 一、准备工作</h5><p>1.一台带无线网卡的win7及以上的电脑<br />2.软件 360随身wifi、fiddler、软件白名单不为空的，书包内有网页的少年派账号<br />3.切换账号bug<br />4.一个修改好包名为白名单内包名，通过AndroidStudio等工具编译的少年派破解专用app<br />5.服务器</p><h5 id="二-破解"><a class="markdownIt-Anchor" href="#二-破解"></a> 二、破解</h5><p>1.利用切换账号bug登入账号。<br />2.进入书包找到一个。<br />3.根据网上教程配置好wifi热点和fiddler。<br />4.将少年派破解专用app上传至服务器。<br />5.打开网页，打开fiddler，断点设置为before requests。</p><p>开启断点，注入以下代码：</p><p><code>&lt;a download=&quot;文件名&quot; href=&quot;文件下载接口地址&quot;&gt;&lt;/a&gt;</code></p><p>取消断点，传回。<br />6.Pad上安装专用app，给予设备管理员权限后选择最后一项清除数据。</p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/5.1.jpg" srcset="/img/loading.gif" alt="5.1.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/5.2.jpg" srcset="/img/loading.gif" alt="5.2.jpg" /></p><p>7.等待恢复出厂设置完成，enjoy it!</p>]]></content>
     
     
     <categories>
