@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Page not found ~ 维他入我心</title>
+  <title>Bmap_7.0.72_破解 ~ 维他入我心</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.10.2/css/all.min.css"  >
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"  >
@@ -131,7 +131,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期五, 二月 7日 2020, 10:23 上午
+                  星期三, 二月 26日 2020, 9:29 上午
                 </p>
               
 
@@ -140,7 +140,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    115 字
+                    229 字
                   </span>&nbsp;
                 
 
@@ -181,13 +181,37 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>R.I.P<br />
-李文亮，讲真话的人。<br />
-他用自己的生命证实了自己的清白，一个人讲了真话，却付出了这样的代价。<br />
-一名眼科医生，在被警方训诫后冲上了一线。二月一号确诊，五号病危，六号去世。但是在大陆，他活到了七号。<br />
-<a href="www.baidu.com">![special.jpg](https://gitee.com/wtrwx/wtrwxIMG/raw/master/special.jpg)</a><br />
-愿你的灵魂永安。<br />
-再一次悼念一位讲真话的人。</p>
+            <blockquote>
+<p>昨天Bmap突然涨价了，一天永久会员从6r涨到88r，支持不起了，于是就有了下文…</p>
+</blockquote>
+<ol>
+<li>先找找哪里有这个会员状态的检验<br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.1.jpg" srcset="/img/loading.gif" alt="12.1.jpg" /><br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.2.jpg" srcset="/img/loading.gif" alt="12.2.jpg" /></li>
+<li>根据文字定位到布局然后根据id找到点击事件<br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.3.jpg" srcset="/img/loading.gif" alt="12.3.jpg" /><br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.4.jpg" srcset="/img/loading.gif" alt="12.4.jpg" /><br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.5.jpg" srcset="/img/loading.gif" alt="12.5.jpg" /></li>
+<li>转成Java观察一下，这里调用了一个<code>isVipValid</code>方法（其实不转也看得出来）<br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.6.jpg" srcset="/img/loading.gif" alt="12.6.jpg" /></li>
+<li>到这其实就很明显了，直接跳转到<code>Lme/gfuil/bmap/model/UserInfoModel;</code>这个类，找到这个<code>isVipValid</code>方法，转成Java看一下。<br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.7.jpg" srcset="/img/loading.gif" alt="12.7.jpg" /><br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.8.jpg" srcset="/img/loading.gif" alt="12.8.jpg" /></li>
+<li>大致就是本地判断，是VIP返回true，不是VIP返回false。我们直接把判断删掉，然后返回true就可以了。<br />
+<img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.9.jpg" srcset="/img/loading.gif" alt="12.9.jpg" /></li>
+</ol>
+<pre class="highlight"><code class="">.method public isVipValid()Z
+    .registers 6
+
+    .line 163
+    const/4 v0, 0x1
+    return v0
+.end method
+</code></pre>
+<ol start="6">
+<li>打包签名安装，enjoy it！</li>
+</ol>
+<p>因为作者也是酷安的个人开发者，所以这次不会发成品，本文也只是对破解思路的记录，请勿用于其他用处。</p>
 
             <hr>
           </div>
@@ -198,11 +222,20 @@
               <span>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8">日常</a>
+                  <a class="hover-with-bg" href="/categories/Android">Android</a>
                   &nbsp;
                 
               </span>&nbsp;&nbsp;
             
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/Android">Android</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E7%A0%B4%E8%A7%A3">破解</a>
+                
+              </span>
             
             </p>
             
@@ -398,7 +431,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Page not found&nbsp;",
+        "Bmap_7.0.72_破解&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
