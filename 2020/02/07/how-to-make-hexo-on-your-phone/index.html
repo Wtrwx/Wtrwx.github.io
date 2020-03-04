@@ -118,7 +118,7 @@
 </nav>
 
     <div class="view intro-2" id="background" false
-         style="background: url('https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png')no-repeat center center;
+         style="background: url('https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -167,6 +167,7 @@
   <main>
     
       
+
 <div class="container-fluid">
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
@@ -264,7 +265,7 @@ git remote add origin git@github.com:github用户名/github用户名.github.
               <span>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/Android">Android</a>
+                  <a class="hover-with-bg" href="/categories/Android/">Android</a>
                   &nbsp;
                 
               </span>&nbsp;&nbsp;
@@ -273,7 +274,7 @@ git remote add origin git@github.com:github用户名/github用户名.github.
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/Android">Android</a>
+                  <a class="hover-with-bg" href="/tags/Android/">Android</a>
                 
               </span>
             
@@ -282,19 +283,37 @@ git remote add origin git@github.com:github用户名/github用户名.github.
               <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
             
           </div>
-          <!-- Comments -->
-          <div class="container comments mx-auto" id="comments">
-               
-                  <br><br>
-               
-               
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container">
+        <div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+      </div>
+    
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
   <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
   <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
   <script>
-    var notify = 'false' === true;
-    var verify = 'false' === true;
+    var notify = 'false' === 'true';
+    var verify = 'false' === 'true';
     var oldLoad = window.onload;
     window.onload = function () {
       new Valine({
@@ -304,7 +323,7 @@ git remote add origin git@github.com:github用户名/github用户名.github.
         app_id: "iJ9YWur9WXEHRtV80LJLFOr2-gzGzoHsz",
         app_key: "eGXXmoTvBtzHmwAzSNE6dD0g",
         placeholder: "说点什么",
-        avatar: "retro",
+        avatar: "/retro",
         meta: ['nick', 'mail', 'link'],
         pageSize: "10",
       });
@@ -315,22 +334,9 @@ git remote add origin git@github.com:github用户名/github用户名.github.
       powered by Valine.</a></noscript>
 
 
-         
-  </div>
-        </div>
-      </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
+    
   </div>
 </div>
-<!-- custom -->
 
     
   </main>
@@ -397,9 +403,50 @@ git remote add origin git@github.com:github用户名/github用户名.github.
 
 
   
-    <script src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
+  <script src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var toc = $('#toc');
+      var main = $('main');
+      var tocT = navHeight + (toc.offset().top - main.offset().top);
+      var tocLimMin = main.offset().top - navHeight;
+      var tocLimMax = $('#comments').offset().top - navHeight;
+      $(window).scroll(function () {
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': tocT,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
 
 
 
