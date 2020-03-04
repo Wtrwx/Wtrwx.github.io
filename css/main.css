@@ -240,22 +240,21 @@ body a:hover {
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
-.wechat {
+.qr-trigger {
   cursor: pointer;
   position: relative;
 }
-.wechat:hover .wechat-qrcode {
+.qr-trigger:hover .qr-img {
   display: block;
+  transition: all 0.3s;
 }
-.wechat-qrcode {
-  width: 200px;
-  height: 300px;
-  background: url("") no-repeat;
-  background-size: 100%;
+.qr-img {
+  max-width: 200px;
   position: absolute;
   right: -100px;
   z-index: 99;
   display: none;
+  box-shadow: 0 0 20px -5px rgba(158,158,158,0.2);
 }
 a.police-beian {
   position: relative;
@@ -443,8 +442,7 @@ a.police-beian img {
 }
 .index-excerpt {
   margin: 0.5rem 0 0.5rem 0;
-  height: auto;
-  max-height: calc(1.4rem * 3);
+  height: calc(1.4rem * 3);
   line-height: 1.4rem;
   overflow: hidden;
 }
@@ -507,6 +505,9 @@ h6::before {
 #toc {
   padding: 3rem 0 0 0;
   height: 80%;
+}
+#toc p {
+  visibility: hidden;
 }
 #tocbot {
   max-height: 100%;
