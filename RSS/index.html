@@ -6,7 +6,7 @@
 
 
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
@@ -37,12 +37,12 @@
   <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"  >
 
 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml">
 </head>
 
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 80vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -155,7 +155,30 @@
                 
 
 <p><strong>本站RSS订阅地址：<a href="https://wtrwx.top/atom.xml" target="_blank" rel="noopener">https://wtrwx.top/atom.xml</a></strong></p>
-<script         src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script><script src="https://code.jquery.com/jquery-3.3.1.min.js"></script><div><span id="btn" data-clipboard-text="baidu">一键复制</span></div><div id="show" style="display: none;">已复制</div><script>	var btn=document.getElementById('btn');	var clipboard=new Clipboard(btn);	clipboard.on('success', function(e){		$('#show').slideDown().delay(1500).slideUp(300);		console.log(e);	});	clipboard.on('error', function(e){		$('#show').slideDown().delay(1500).slideUp(300);		console.log(e);	});
+<html>
+<head>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+
+function copy() {
+
+var e = document.getElementById("copy");
+
+e.select(); // 选择对象
+
+document.execCommand("Copy"); // 执行浏览器复制命令
+
+alert("复制成功！");
+
+}
+
+</script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p><textarea id="copy"><a href="https://blog.csdn.net/yuzsmc" target="_blank" rel="noopener">https://blog.csdn.net/yuzsmc</a></textarea></p>
+<p>&lt;input type=“button” οnclick=“copy();” value=“点击复制”&gt;</input></p><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
 <h2 id="一-什么是rss"><a class="markdownIt-Anchor" href="#一-什么是rss"></a> 一、什么是RSS</h2>
 <blockquote>
 <p>简易信息聚合是一种RSS基于XML标准，在互联网上被广泛采用的内容包装和投递协议。RSS(Really Simple Syndication)是一种描述和同步网站内容的格式，是使用最广泛的XML应用。RSS搭建了信息迅速传播的一个技术平台，使得每个人都成为潜在的信息提供者。发布一个RSS文件后，这个RSS Feed中包含的信息就能直接被其他站点调用，而且由于这些数据都是标准的XML格式，所以也能在其他的终端和服务中使用，是一种描述和同步网站内容的格式。RSS广泛用于网上新闻频道，blog和wiki，使用RSS订阅能更快地获取信息，网站提供RSS输出，有利于让用户获取网站内容的最新更新。网络用户可以在客户端借助于支持RSS的聚合工具软件，在不打开网站内容页面的情况下阅读支持RSS输出的网站内容。<br />
@@ -343,24 +366,7 @@
         $(this).wrap(element);
       }
     );
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </script>
 
 
 
