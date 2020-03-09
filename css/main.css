@@ -15,6 +15,9 @@ body a {
 body a:hover {
   color: #64B5F6;
 }
+img[srcset] {
+  object-fit: cover;
+}
 .hover-with-bg {
   display: inline-block;
   padding: 0.45rem;
@@ -29,7 +32,7 @@ body a:hover {
 }
 #board {
   position: relative;
-  margin-top: -3rem;
+  margin-top: -2rem;
   background-color: #fff;
   border-radius: 0.5rem;
   z-index: 3;
@@ -43,15 +46,29 @@ body a:hover {
     padding-right: 0 !important;
   }
 }
-.row {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
 #local-search-result .search-list-title {
   border-left: 3px solid #0d47a1;
 }
 #local-search-result .search-list-content {
   padding: 0 1.25rem;
+}
+.post-content strong {
+  font-weight: bold;
+}
+.post-content img {
+  max-width: 90%;
+}
+.markdown-body {
+  margin-bottom: 2rem;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-bottom: 0.75em;
+  margin-top: 2em;
 }
 .markdown-body hr {
   height: 0.2em;
@@ -59,6 +76,12 @@ body a:hover {
 }
 .markdown-body strong {
   font-weight: bold;
+}
+.markdown-body img {
+  max-width: 90%;
+  margin: 1.5rem auto;
+  display: block;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
 }
 .list-group-item {
   border: 0;
@@ -117,7 +140,7 @@ body a:hover {
   position: absolute;
   width: 100%;
   font-size: 2rem;
-  height: 8rem;
+  height: 6rem;
   text-align: center;
   cursor: pointer;
   bottom: 0;
@@ -272,33 +295,6 @@ a.police-beian img {
   a.police-beian span.police-beian-sep {
     display: none;
   }
-}
-@media (max-width: 768px) {
-  .links {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-  }
-}
-.link-card {
-  box-shadow: none;
-}
-.link-card:hover {
-  transition: all 0.3s;
-  background-color: #ebedef;
-  z-index: 1;
-}
-.link-card-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.link-card-text {
-  height: 3em;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 @-moz-keyframes scroll-down {
   0% {
@@ -471,12 +467,6 @@ a.police-beian img {
   padding-right: 10%;
   max-width: 64rem;
 }
-.post-content img {
-  max-width: 90%;
-  margin: 1.5rem auto;
-  display: block;
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
-}
 @media (max-width: 768px) {
   .post-content {
     padding-left: 2rem;
@@ -501,6 +491,12 @@ h6::before {
   height: 50px;
   width: 1px;
   visibility: hidden;
+}
+.post-meta {
+  margin: 0 0.25rem;
+}
+.post-meta i {
+  margin: 0 0.15rem;
 }
 #toc {
   padding: 3rem 0 0 0;
@@ -552,15 +548,7 @@ h6::before {
 }
 .custom,
 .comments {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-@media (max-width: 425px) {
-  .custom,
-  .comments {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+  margin-top: 2rem;
 }
 @media (min-width: 64rem) {
   .custom,
@@ -576,6 +564,11 @@ h6::before {
   margin: -8rem auto 1rem;
   max-width: 10rem;
   z-index: 3;
+}
+.about-avatar img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
 }
 .category-tree-list {
   font-size: 1rem;
@@ -597,11 +590,83 @@ h6::before {
 .category-tree-list .category-tree-list-count::after {
   content: ")";
 }
+.tagcloud {
+  padding: 1rem 6rem;
+}
 .tagcloud a {
   display: inline-block;
-  padding: 0.1rem 0.55rem;
-  font-weight: 350;
+  padding: 0.5rem;
+  font-weight: 400;
 }
 .tagcloud a:hover {
   color: #64B5F6 !important;
+}
+.links .card {
+  box-shadow: none;
+}
+.links .card-body {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  display: block;
+}
+.links .card-body .row {
+  margin: 0;
+  height: 3.5rem;
+  flex-wrap: nowrap;
+}
+.links .card-body:hover {
+  transition-duration: 0.3s;
+  background-color: #ebedef;
+}
+.links .card-body:hover .link-avatar {
+  transform: scale(1.1);
+}
+.link-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  margin-right: 0.75rem;
+  object-fit: cover;
+  transition-duration: 0.3s;
+}
+.link-text {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+}
+.link-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #2f4154;
+  font-weight: bold;
+}
+.link-intro {
+  max-height: 2rem;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  color: #a3a3a3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .links .card {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media (min-width: 769px) {
+  .link-text:only-child {
+    margin-left: 1rem;
+  }
 }
