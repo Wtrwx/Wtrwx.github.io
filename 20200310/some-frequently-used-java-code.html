@@ -150,7 +150,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    243 字
+                    237 字
                   </span>
                 
                 
@@ -216,16 +216,14 @@
 
     }
 </code></pre>
-<h3 id="2控件连续点击事件btn1为控件"><a class="markdownIt-Anchor" href="#2控件连续点击事件btn1为控件"></a> 2.控件连续点击事件（btn1为控件）</h3>
+<h3 id="2控件连续点击事件"><a class="markdownIt-Anchor" href="#2控件连续点击事件"></a> 2.控件连续点击事件</h3>
 <pre class="highlight"><code class="java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> COUNTS = <span class="hljs-number">7</span>;<span class="hljs-comment">// 点击次数</span>
 	<span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> DURATION = <span class="hljs-number">1500</span>;<span class="hljs-comment">// 规定有效时间</span>
 	<span class="hljs-keyword">long</span>[] mHits = <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[COUNTS];
-btn1.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
-				<span class="hljs-meta">@Override</span>
-				<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>{
-					continuousClick(COUNTS, DURATION);
-				}
-			});
+<span class="hljs-comment">//点击事件</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>{
+		continuousClick(COUNTS, DURATION);
+}
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">continuousClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> count, <span class="hljs-keyword">long</span> time)</span> </span>{
 		<span class="hljs-comment">//每次点击时，数组向前移动一位</span>
 		System.arraycopy(mHits, <span class="hljs-number">1</span>, mHits, <span class="hljs-number">0</span>, mHits.length - <span class="hljs-number">1</span>);
