@@ -273,14 +273,11 @@ SNP-Crack
 
  1.检测是否连接代理
 private boolean isWifiProxy(Context context) {
-
-        final boolean IS_ICS_OR_LATER = android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
-
-        String proxyAddress;
-
-        int proxyPort;
-
-     </div>
+ final boolean IS_ICS_OR_LATER = android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+ String proxyAddress;
+ int proxyPort;
+ if (IS_ICS_OR_LATER) {
+ proxy</div>
         </div>
       </a>
 
