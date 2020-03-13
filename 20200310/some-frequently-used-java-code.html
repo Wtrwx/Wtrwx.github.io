@@ -150,7 +150,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    237 字
+                    233 字
                   </span>
                 
                 
@@ -188,28 +188,31 @@
 <p>以下代码或来自于网络或是自己原创，未能及时注明原出处。如有侵权，请通过关于页的联系方式联系我。</p>
 </blockquote>
 <h3 id="1检测是否连接代理"><a class="markdownIt-Anchor" href="#1检测是否连接代理"></a> 1.检测是否连接代理</h3>
-<pre class="highlight"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isWifiProxy</span><span class="hljs-params">(Context context)</span> </span>{
-        <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> IS_ICS_OR_LATER = android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
-        String proxyAddress;
-        <span class="hljs-keyword">int</span> proxyPort;
-        <span class="hljs-keyword">if</span> (IS_ICS_OR_LATER) {
-            proxyAddress = System.getProperty(<span class="hljs-string">"http.proxyHost"</span>);
-            String portStr = System.getProperty(<span class="hljs-string">"http.proxyPort"</span>);
-            proxyPort = Integer.parseInt((portStr != <span class="hljs-keyword">null</span> ? portStr : <span class="hljs-string">"-1"</span>));
-        } <span class="hljs-keyword">else</span> {
-            proxyAddress = android.net.Proxy.getHost(context);
-            proxyPort = android.net.Proxy.getPort(context);
-        }
-        <span class="hljs-keyword">return</span> (!TextUtils.isEmpty(proxyAddress)) &amp;&amp; (proxyPort != -<span class="hljs-number">1</span>);
+<pre class="highlight"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isWifiProxy</span><span class="hljs-params">(Context context)</span>
+</span>{
+<span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> IS_ICS_OR_LATER = android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+String proxyAddress;
+    <span class="hljs-keyword">int</span> proxyPort;
+    <span class="hljs-keyword">if</span> (IS_ICS_OR_LATER)
+	{
+        proxyAddress = System.getProperty(<span class="hljs-string">"http.proxyHost"</span>);
+        String portStr = System.getProperty(<span class="hljs-string">"http.proxyPort"</span>);
+        proxyPort = Integer.parseInt((portStr != <span class="hljs-keyword">null</span> ? portStr : <span class="hljs-string">"-1"</span>));
+    }
+	<span class="hljs-keyword">else</span>
+	{
+        proxyAddress = android.net.Proxy.getHost(context);
+        proxyPort = android.net.Proxy.getPort(context);
+    }
+    <span class="hljs-keyword">return</span> (!TextUtils.isEmpty(proxyAddress)) &amp;&amp; (proxyPort != -<span class="hljs-number">1</span>);
 }
 </code></pre>
 <h3 id="2控件连续点击事件"><a class="markdownIt-Anchor" href="#2控件连续点击事件"></a> 2.控件连续点击事件</h3>
 <pre class="highlight"><code class="java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> COUNTS = <span class="hljs-number">7</span>;<span class="hljs-comment">// 点击次数</span>
 <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> DURATION = <span class="hljs-number">1500</span>;<span class="hljs-comment">// 规定有效时间</span>
 <span class="hljs-keyword">long</span>[] mHits = <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[COUNTS];
-<span class="hljs-comment">//点击事件</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>{
-	continuousClick(COUNTS, DURATION);
+    continuousClick(COUNTS, DURATION);
 }
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">continuousClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> count, <span class="hljs-keyword">long</span> time)</span> </span>{
 	<span class="hljs-comment">//每次点击时，数组向前移动一位</span>
