@@ -1,0 +1,87 @@
+---
+title: OnlinePython
+translate_title: onlinepython
+date: 2020-03-18 11:04:25
+---
+<div class="markdown-body">
+<head>
+    <title>test</title>
+    <script src="http://skulpt.org/js/skulpt.min.js" type="text/javascript"></script> 
+    <script src="http://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script> 
+</head> 
+
+<body> 
+
+<script type="text/javascript"> 
+
+function outf(text) { 
+    var mypre = document.getElementById("output"); 
+    mypre.innerHTML = mypre.innerHTML + text; 
+} 
+
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+if (!Sk.TurtleGraphics) {
+  Sk.TurtleGraphics = {}
+}
+
+function runit() { 
+   var prog = document.getElementById("yourcode").value; 
+   var mypre = document.getElementById("output"); 
+   mypre.innerHTML = ''; 
+   Sk.pre = "output";
+   Sk.configure({
+    output: (text) => {
+        this.error = text
+    },
+    read: (x) => {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
+            throw new Error('File not found: \'' + x + '\'')
+        }
+        return Sk.builtinFiles['files'][x]
+    },
+    python3: true
+})
+   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+   var myPromise = Sk.misceval.asyncToPromise(function() {
+       return Sk.importMainWithBody("<stdin>", false, prog, true);
+   });
+   myPromise.then(function(mod) {
+       console.log('success');
+   },
+       function(err) {
+       console.log(err.toString());
+   });
+} 
+</script> 
+
+<h3>基于skulpt的在线Python运行</h3> 
+<p>skulpt通过将Python代码转换成js代码，在您的浏览器直接运行Python代码。但skulpt对Python3的兼容性一般，所以本demo只能拿来水信息课。</p>
+<form> 
+<textarea id="yourcode" cols="80" rows="10">
+print('HelloWorld!')
+import turtle as t
+t.penup()
+t.goto(0,-150)
+t.pendown()
+t.pensize(2)
+t.pencolor("red")
+t.left(45)
+t.fd(200)
+t.circle(100, 180)
+t.right(90)
+t.circle(100, 180)
+t.fd(200)
+t.done()
+</textarea><br />
+<button type="button" onclick="runit()">Run</button> 
+</form> 
+<pre id="output" ></pre> 
+<div id="mycanvas"></div>
+<script type="text/javascript">
+
+</body> 
+</div>
