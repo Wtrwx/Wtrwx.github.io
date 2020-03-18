@@ -173,7 +173,7 @@
     <script src="http://skulpt.org/js/skulpt.min.js" type="text/javascript"></script> 
     <script src="http://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script> 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head> 
+</head>  
 <body> 
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript"> 
 
@@ -181,7 +181,6 @@ function outf(text) {
     var mypre = document.getElementById("output"); 
     mypre.innerHTML = mypre.innerHTML + text; 
 } 
-
 function builtinRead(x) {
     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
             throw "File not found: '" + x + "'";
@@ -211,7 +210,7 @@ function runit() {
 <p>skulpt通过将Python代码转换成js代码，在您的浏览器直接运行Python代码。但skulpt对Python3的兼容性一般，所以本demo只能拿来水信息课。</p>
 <form> 
 <textarea id="yourcode" cols="80" rows="10">
-print('HelloWorld!')
+print('Hello World!')
 import turtle as t
 t.penup()
 t.goto(0,-150)
@@ -229,10 +228,9 @@ t.done()
 <button type="button" onclick="runit()">Run</button> 
 </form> 
 <pre id="output" ></pre> 
-<div id="mycanvas"></div>
-<script type="text/javascript"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<div id="mycanvas"></div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body> 
-</div>
+</html> 
 
 </div>
 
