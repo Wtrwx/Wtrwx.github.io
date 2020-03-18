@@ -192,18 +192,9 @@ function runit() {
    var mypre = document.getElementById("output"); 
    mypre.innerHTML = ''; 
    Sk.pre = "output";
-   Sk.configure({
-    output: (text) => {
-        this.error = text
-    },
-    read: (x) => {
-        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
-            throw new Error('File not found: \'' + x + '\'')
-        }
-        return Sk.builtinFiles['files'][x]
-    },
-    python3: true
-})
+   Sk.configure({ output: outf, read: builtinRead, __future__: Sk.python3
+   python3: true});
+  
    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
    var myPromise = Sk.misceval.asyncToPromise(function() {
        return Sk.importMainWithBody("<stdin>", false, prog, true);
