@@ -237,9 +237,14 @@ Sk.configure({
     },
     python3: true
 })
-<p>if (!Sk.TurtleGraphics) {<br />
-Sk.TurtleGraphics = {}<br />
-}</p><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+if (!Sk.TurtleGraphics) {
+  Sk.TurtleGraphics = {}
+}<!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body> 
 </div>
 </div>
