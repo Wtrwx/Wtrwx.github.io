@@ -181,18 +181,37 @@ function outf(text) {
     var mypre = document.getElementById("output"); 
     mypre.innerHTML = mypre.innerHTML + text; 
 } 
+
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+if (!Sk.TurtleGraphics) {
+  Sk.TurtleGraphics = {}
+}
+
 function runit() { 
    var prog = document.getElementById("yourcode").value; 
    var mypre = document.getElementById("output"); 
    mypre.innerHTML = ''; 
    Sk.pre = "output";
-   Sk.configure({output:outf, read:builtinRead}); 
-
+   Sk.configure({
+    output: (text) => {
+        this.error = text
+    },
+    read: (x) => {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
+            throw new Error('File not found: \'' + x + '\'')
+        }
+        return Sk.builtinFiles['files'][x]
+    },
+    python3: true
+})
    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
    var myPromise = Sk.misceval.asyncToPromise(function() {
        return Sk.importMainWithBody("<stdin>", false, prog, true);
    });
-
    myPromise.then(function(mod) {
        console.log('success');
    },
@@ -224,27 +243,7 @@ t.done()
 </form> 
 <pre id="output" ></pre> 
 <div id="mycanvas"></div>
-<script type="text/javascript">
-Sk.configure({
-    output: (text) => {
-        this.error = text
-    },
-    read: (x) => {
-        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
-            throw new Error('File not found: \'' + x + '\'')
-        }
-        return Sk.builtinFiles['files'][x]
-    },
-    python3: true
-})
-function builtinRead(x) {
-    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-            throw "File not found: '" + x + "'";
-    return Sk.builtinFiles["files"][x];
-}
-if (!Sk.TurtleGraphics) {
-  Sk.TurtleGraphics = {}
-}<!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body> 
 </div>
 </div>
