@@ -172,7 +172,7 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>test</title>
     <script src="http://skulpt.org/js/skulpt.min.js" type="text/javascript"></script> 
     <script src="http://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script> 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>  
 <body> 
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript"> 
@@ -207,7 +207,9 @@ function runit() {
 } 
 </script> 
 <h3>基于skulpt的在线Python运行</h3> 
+<blockquote>
 <p>skulpt通过将Python代码转换成js代码，在您的浏览器直接运行Python代码。但skulpt对Python3的兼容性一般，所以本demo只能拿来水信息课。</p>
+</blockquote>
 <form> 
 <textarea id="yourcode" cols="80" rows="10">
 print('Hello World!')
@@ -227,6 +229,7 @@ t.done()
 </textarea><br />
 <button type="button" onclick="runit()">Run</button> 
 </form> 
+输出区域：
 <pre id="output" ></pre> 
 <div id="mycanvas"></div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body> 
