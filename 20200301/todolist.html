@@ -137,7 +137,8 @@
   </div>
 </nav>
 
- <div class="view intro-2" id="background" parallax=true>
+ <div class="view intro-2" id="background" parallax=true
+    style="background: no-repeat center center; "background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center">
           <div class="container text-center white-text fadeInUp">
@@ -178,8 +179,15 @@
     </div>
     <script type="text/javascript">
 function changeBg(){
- document.getElementById("background").style.backgroundImage="url("https://gitee.com/jifengyeying/picture/raw/master/hexo/page_night.jpg")"
-       
+var date = new Date();
+var hour = date.getHours();
+if (hour >= 6) {
+document.getElementById("background").style.backgroundImage="url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_day.jpg)"
+} else if (hour >= 16 && hour <= 19) {
+ document.getElementById("background").style.backgroundImage="url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_noon.jpg)"
+} else {
+ document.getElementById("background").style.backgroundImage="url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_night.jpg)"
+       }
 }
 changeBg();
 </script>
