@@ -37,7 +37,7 @@ img[srcset] {
   border-radius: 0.5rem;
   z-index: 3;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   header .h2 {
     font-size: 1.5rem;
   }
@@ -52,14 +52,62 @@ img[srcset] {
 #local-search-result .search-list-content {
   padding: 0 1.25rem;
 }
-.post-content strong {
+.page-content strong,
+post-content strong {
   font-weight: bold;
 }
-.post-content img {
-  max-width: 90%;
+.code-block {
+  position: relative;
+}
+.code-block > pre {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.copy-btn {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.1rem;
+  border: none;
+  background-color: #fafbfc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-appearance: none;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: bold;
+  outline: none;
+  color: #6a737d;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  padding: 0.25rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  opacity: 0;
+}
+.copy-btn > span {
+  margin-left: 5px;
+}
+.code-block:hover > .copy-btn {
+  opacity: 0.9;
+}
+.code-block:hover > .copy-btn,
+.code-block:not(:hover) > .copy-btn {
+  outline: none;
+}
+@media (max-width: 575px) {
+  .copy-btn {
+    display: none;
+  }
 }
 .markdown-body {
   margin-bottom: 2rem;
+}
+.markdown-body strong {
+  font-weight: bold;
 }
 .markdown-body h1,
 .markdown-body h2,
@@ -77,7 +125,8 @@ img[srcset] {
 .markdown-body strong {
   font-weight: bold;
 }
-.markdown-body img {
+.markdown-body p > img,
+.markdown-body p > a > img {
   max-width: 90%;
   margin: 1.5rem auto;
   display: block;
@@ -112,7 +161,7 @@ img[srcset] {
 .navbar-col-show {
   background-color: #1a73e8;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar {
     font-size: 1rem;
     line-height: 2.5rem;
@@ -451,7 +500,7 @@ a.police-beian img {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .index-info {
     padding-top: 0.5rem;
   }
@@ -467,13 +516,13 @@ a.police-beian img {
   padding-right: 10%;
   max-width: 64rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .post-content {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 424px) {
   .post-content {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -497,6 +546,78 @@ h6::before {
 }
 .post-meta i {
   margin: 0 0.15rem;
+}
+.post-prevnext {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.post-prevnext .post-prev,
+.post-prevnext .post-next {
+  display: flex;
+}
+.post-prevnext .post-prev i,
+.post-prevnext .post-next i {
+  font-size: 1.2rem;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.post-prevnext .post-prev a,
+.post-prevnext .post-next a {
+  display: flex;
+  align-items: center;
+}
+.post-prevnext .post-prev span,
+.post-prevnext .post-next span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.post-prevnext .post-prev:hover i,
+.post-prevnext .post-prev:active i,
+.post-prevnext .post-next:hover i,
+.post-prevnext .post-next:active i {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+.post-prevnext .post-prev:hover i,
+.post-prevnext .post-prev:active i {
+  -webkit-animation-name: post-prev-anim;
+  animation-name: post-prev-anim;
+}
+.post-prevnext .post-next:hover i,
+.post-prevnext .post-next:active i {
+  -webkit-animation-name: post-next-anim;
+  animation-name: post-next-anim;
+}
+.post-prevnext .post-next {
+  justify-content: flex-end;
+}
+.post-prevnext .fa-chevron-left {
+  margin-right: 0.5rem;
+}
+.post-prevnext .fa-chevron-right {
+  margin-left: 0.5rem;
+}
+@media (max-width: 575px) {
+  .post-prevnext {
+    display: none;
+  }
 }
 #toc {
   padding: 3rem 0 0 0;
@@ -559,6 +680,125 @@ h6::before {
 .katex-block {
   overflow-x: auto;
 }
+.katex,
+.mjx-mrow {
+  white-space: pre-wrap !important;
+}
+.mjx-char {
+  line-height: 1;
+}
+@-moz-keyframes post-prev-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(-0.35rem);
+    transform: translateX(-0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes post-prev-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(-0.35rem);
+    transform: translateX(-0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-o-keyframes post-prev-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(-0.35rem);
+    transform: translateX(-0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes post-prev-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(-0.35rem);
+    transform: translateX(-0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes post-next-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(0.35rem);
+    transform: translateX(0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes post-next-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(0.35rem);
+    transform: translateX(0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-o-keyframes post-next-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(0.35rem);
+    transform: translateX(0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes post-next-anim {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(0.35rem);
+    transform: translateX(0.35rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
 .about-avatar {
   position: relative;
   margin: -8rem auto 1rem;
@@ -591,7 +831,7 @@ h6::before {
   content: ")";
 }
 .tagcloud {
-  padding: 1rem 6rem;
+  padding: 1rem 5%;
 }
 .tagcloud a {
   display: inline-block;
@@ -616,7 +856,8 @@ h6::before {
   flex-wrap: nowrap;
 }
 .links .card-body:hover {
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
   background-color: #ebedef;
 }
 .links .card-body:hover .link-avatar {
@@ -628,7 +869,8 @@ h6::before {
   border-radius: 1.5rem;
   margin-right: 0.75rem;
   object-fit: cover;
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 .link-text {
   display: grid;
@@ -653,7 +895,7 @@ h6::before {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .links {
     display: flex;
     flex-direction: column;
@@ -665,7 +907,7 @@ h6::before {
     padding-right: 2rem;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .link-text:only-child {
     margin-left: 1rem;
   }
