@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>给你的博客添加根据时间切换背景</title>
+    <link href="/20200322/add-timeshifted-background-to-your-blog.html"/>
+    <url>/20200322/add-timeshifted-background-to-your-blog.html</url>
+    
+    <content type="html"><![CDATA[<p>不多废话了，直接上代码，简单得很。</p><script type="text/javascript">  function changeBg() {    var date = new Date();    var hour = date.getHours();    var bgView = document.getElementById("background");    if (hour >= 0 && hour < 6) {      bgView.style.backgroundImage = "url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_night.jpg)"    }    if (hour >= 6 && hour < 16) {      bgView.style.backgroundImage = "url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_day.jpg)"    }    if (hour >= 16 && hour < 19) {      bgView.style.backgroundImage = "url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_noon.jpg)"    }    if (hour >= 19 && hour <= 23) {      bgView.style.backgroundImage = "url(https://gitee.com/jifengyeying/picture/raw/master/hexo/page_night.jpg)"    }  }  changeBg();</script>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一些经常用到的Java代码</title>
     <link href="/20200310/some-frequently-used-java-code.html"/>
     <url>/20200310/some-frequently-used-java-code.html</url>
@@ -257,7 +282,7 @@
     
     <tags>
       
-      <tag>Android</tag>
+      <tag>Android Blog</tag>
       
     </tags>
     
