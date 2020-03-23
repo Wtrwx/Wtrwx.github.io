@@ -149,6 +149,12 @@ post-content strong {
 .navbar a:hover {
   background-color: rgba(0,0,0,0.1);
 }
+.navbar a {
+  color: #3c4858;
+}
+.navbar a:hover {
+  color: white;
+}
 .navbar-custom {
   color: white;
 }
