@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtrwx.github.io/"/>
-  <updated>2020-03-23T00:03:18.126Z</updated>
+  <updated>2020-03-23T06:24:44.146Z</updated>
   <id>https://wtrwx.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://wtrwx.github.io/20200322/add-timeshifted-background-to-your-blog.html"/>
     <id>https://wtrwx.github.io/20200322/add-timeshifted-background-to-your-blog.html</id>
     <published>2020-03-22T12:15:00.000Z</published>
-    <updated>2020-03-23T00:03:18.126Z</updated>
+    <updated>2020-03-23T06:24:44.146Z</updated>
     
     <content type="html"><![CDATA[<p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p><p>不多废话了，直接上代码，简单得很。</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBg</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();    <span class="hljs-keyword">var</span> hour = date.getHours();    <span class="hljs-keyword">var</span> bgView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"background"</span>);    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">0</span> &amp;&amp; hour &lt; <span class="hljs-number">6</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example1.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">6</span> &amp;&amp; hour &lt; <span class="hljs-number">16</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example2.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">16</span> &amp;&amp; hour &lt; <span class="hljs-number">19</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example3.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">19</span> &amp;&amp; hour &lt;= <span class="hljs-number">23</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example4.png)"</span>    }  }  changeBg();</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>]]></content>
     
@@ -40,7 +40,9 @@
       <category term="JavaScript" scheme="https://wtrwx.github.io/categories/JavaScript/"/>
     
     
-      <category term="JavaScript Blog" scheme="https://wtrwx.github.io/tags/JavaScript-Blog/"/>
+      <category term="JavaScript" scheme="https://wtrwx.github.io/tags/JavaScript/"/>
+    
+      <category term="Blog" scheme="https://wtrwx.github.io/tags/Blog/"/>
     
   </entry>
   
