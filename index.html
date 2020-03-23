@@ -478,23 +478,32 @@ String proxyAddress;
 昨天Bmap突然涨价了，永久会员从6r涨到88r，支持不起了，于是就有了下文…
 
 
+
 先使用MT管理器2去除签名校验（懒得手动找了）
+
+
 找找哪里有这个会员状态的检验
+
+
+
 
 
 根据文字定位到布局然后根据id找到点击事件
 
 
 
+
+
 转成Java观察一下，这里调用了一个isVipValid方法（其实不转也看得出来）
+
+
 
 到这其实就很明显了，直接跳转到Lme/gfuil/bmap/model/UserInfoModel;这个类，找到这个isVipValid方法，转成Java看一下。
 
 
-大致就是本地判断，是VIP返回true，不是VIP返回false。我们直接把判断删掉，然后返回true就可以了。
 
 
-.meth</div>
+大致就是本地判断，是VIP返回true，不是VIP返回false。我们直接把判断删掉，然后返回true就</div>
         </div>
       </a>
 

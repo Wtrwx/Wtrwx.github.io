@@ -138,9 +138,9 @@
     <link href="https://wtrwx.github.io/20200226/bmap7072crack.html"/>
     <id>https://wtrwx.github.io/20200226/bmap7072crack.html</id>
     <published>2020-02-26T01:29:03.000Z</published>
-    <updated>2020-03-23T06:54:18.132Z</updated>
+    <updated>2020-03-23T07:02:24.696Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>昨天Bmap突然涨价了，永久会员从6r涨到88r，支持不起了，于是就有了下文…</p></blockquote><ol start="0"><li>先使用MT管理器2去除签名校验（懒得手动找了）</li><li>找找哪里有这个会员状态的检验<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.1.jpg" srcset="/img/loading.gif" alt="12.1.jpg" /><br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.2.jpg" srcset="/img/loading.gif" alt="12.2.jpg" /></li><li>根据文字定位到布局然后根据id找到点击事件<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.3.jpg" srcset="/img/loading.gif" alt="12.3.jpg" /><br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.4.jpg" srcset="/img/loading.gif" alt="12.4.jpg" /><br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.5.jpg" srcset="/img/loading.gif" alt="12.5.jpg" /></li><li>转成Java观察一下，这里调用了一个<code>isVipValid</code>方法（其实不转也看得出来）<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.6.jpg" srcset="/img/loading.gif" alt="12.6.jpg" /></li><li>到这其实就很明显了，直接跳转到<code>Lme/gfuil/bmap/model/UserInfoModel;</code>这个类，找到这个<code>isVipValid</code>方法，转成Java看一下。<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.7.jpg" srcset="/img/loading.gif" alt="12.7.jpg" /><br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.8.jpg" srcset="/img/loading.gif" alt="12.8.jpg" /></li><li>大致就是本地判断，是VIP返回true，不是VIP返回false。我们直接把判断删掉，然后返回true就可以了。<br /><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.9.jpg" srcset="/img/loading.gif" alt="12.9.jpg" /></li></ol><pre class="highlight"><code class="">.method public isVipValid()Z    .registers 6    .line 163    const/4 v0, 0x1    return v0.end method</code></pre><ol start="6"><li>打包签名安装，enjoy it！</li></ol><p>因为作者也是酷安的个人开发者，所以这次不会发成品，本文也只是对破解思路的记录，请勿用于其他用处。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>昨天Bmap突然涨价了，永久会员从6r涨到88r，支持不起了，于是就有了下文…</p></blockquote><ol start="0"><li><p>先使用MT管理器2去除签名校验（懒得手动找了）</p></li><li><p>找找哪里有这个会员状态的检验</p></li></ol><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.1.jpg" srcset="/img/loading.gif" alt="12.1.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.2.jpg" srcset="/img/loading.gif" alt="12.2.jpg" /></p><ol start="2"><li>根据文字定位到布局然后根据id找到点击事件</li></ol><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.3.jpg" srcset="/img/loading.gif" alt="12.3.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.4.jpg" srcset="/img/loading.gif" alt="12.4.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.5.jpg" srcset="/img/loading.gif" alt="12.5.jpg" /></p><ol start="3"><li>转成Java观察一下，这里调用了一个<code>isVipValid</code>方法（其实不转也看得出来）</li></ol><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.6.jpg" srcset="/img/loading.gif" alt="12.6.jpg" /></p><ol start="4"><li>到这其实就很明显了，直接跳转到<code>Lme/gfuil/bmap/model/UserInfoModel;</code>这个类，找到这个<code>isVipValid</code>方法，转成Java看一下。</li></ol><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.7.jpg" srcset="/img/loading.gif" alt="12.7.jpg" /></p><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.8.jpg" srcset="/img/loading.gif" alt="12.8.jpg" /></p><ol start="5"><li>大致就是本地判断，是VIP返回true，不是VIP返回false。我们直接把判断删掉，然后返回true就可以了。</li></ol><p><img src="https://gitee.com/wtrwx/wtrwxIMG/raw/master/12.9.jpg" srcset="/img/loading.gif" alt="12.9.jpg" /></p><pre class="highlight"><code class="">.method public isVipValid()Z    .registers 6    .line 163    const/4 v0, 0x1    return v0.end method</code></pre><ol start="6"><li>打包签名安装，enjoy it！</li></ol><p>因为作者也是酷安的个人开发者，所以这次不会发成品，本文也只是对破解思路的记录，请勿用于其他用处。</p>]]></content>
     
     <summary type="html">
     
@@ -150,8 +150,11 @@
 &lt;p&gt;昨天Bmap突然涨价了，永久会员从6r涨到88r，支持不起了，于是就有了下文…&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol start=&quot;0&quot;&gt;
-&lt;li&gt;先使用MT管理器2去除签名校验（懒得手动找了）&lt;/li&gt;
-&lt;li&gt;找找哪里有这个会员状态的检验
+&lt;li&gt;
+&lt;p&gt;先使用MT管理器2去除签名校验（懒得手动找了）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;找
       
     
     </summary>
