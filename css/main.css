@@ -406,6 +406,7 @@ main section .wrap .holder.col-4:nth-child(n) {
 }
 .rkmd-btn:hover {
   text-decoration: none;
+  outline: none;
   box-shadow: 0 4px 10px 0px rgba(0,0,0,0.225);
 }
 .rkmd-btn.btn-fab {
@@ -453,33 +454,12 @@ main section .wrap .holder.col-4:nth-child(n) {
 .rkmd-btn.btn-orange:hover {
   background-color: #ffa829;
 }
-.rkmd-btn.btn-amber {
-  color: #fff;
-  background-color: #ffc107;
-}
-.rkmd-btn.btn-amber:hover {
-  background-color: #ffcb30;
-}
-.rkmd-btn.btn-green {
-  color: #fff;
-  background-color: #4caf50;
-}
-.rkmd-btn.btn-green:hover {
-  background-color: #67bd6a;
-}
 .rkmd-btn.btn-teal {
   color: #fff;
   background-color: #009688;
 }
 .rkmd-btn.btn-teal:hover {
   background-color: #00bfad;
-}
-.rkmd-btn.btn-cyan {
-  color: #fff;
-  background-color: #00bcd4;
-}
-.rkmd-btn.btn-cyan:hover {
-  background-color: #00e0fd;
 }
 .rkmd-btn.btn-indigo {
   color: #fff;
@@ -488,13 +468,6 @@ main section .wrap .holder.col-4:nth-child(n) {
 .rkmd-btn.btn-indigo:hover {
   background-color: #5869c5;
 }
-.rkmd-btn.btn-deepPurple {
-  color: #fff;
-  background-color: #673ab7;
-}
-.rkmd-btn.btn-deepPurple:hover {
-  background-color: #7c52c8;
-}
 .rkmd-btn.btn-pink {
   color: #fff;
   background-color: #e91e63;
@@ -502,26 +475,12 @@ main section .wrap .holder.col-4:nth-child(n) {
 .rkmd-btn.btn-pink:hover {
   background-color: #ed437d;
 }
-.rkmd-btn.btn-red {
-  color: #fff;
-  background-color: #f44336;
-}
-.rkmd-btn.btn-red:hover {
-  background-color: #f6675d;
-}
 .rkmd-btn.btn-yellow {
   color: #fff;
   background-color: #ffeb3b;
 }
 .rkmd-btn.btn-yellow:hover {
   background-color: #f8de00;
-}
-.rkmd-btn.btn-lime {
-  color: #fff;
-  background-color: #cddc39;
-}
-.rkmd-btn.btn-lime:hover {
-  background-color: #bac923;
 }
 .rkmd-btn.btn-brown {
   color: #fff;
@@ -575,12 +534,14 @@ main section .wrap .holder.col-4:nth-child(n) {
   position: relative;
   margin: auto;
   padding: 0;
+  outline: none;
   line-height: normal;
   border-radius: 50%;
   box-shadow: 0 2px 5px 1px rgba(0,0,0,0.3);
 }
 .rkmd-btn.btn-fab:hover,
 .rkmd-btn.btn-fab-mini:hover {
+  outline: none;
   box-shadow: 0 4px 11px 0px rgba(0,0,0,0.375);
 }
 .rkmd-btn.btn-fab i,
@@ -588,6 +549,7 @@ main section .wrap .holder.col-4:nth-child(n) {
   display: inline-block;
   float: none;
   width: inherit;
+  outline: none;
   margin: 0;
   font-size: inherit;
   text-align: center;
