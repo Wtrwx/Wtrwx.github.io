@@ -622,6 +622,16 @@ main section .wrap .holder.col-4:nth-child(n) {
 .rkmd-btn.btn-link[disabled]:hover {
   background-color: transparent !important;
 }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 16px;
+}
+::-webkit-scrollbar-track {
+  background-color: #e3f2fd;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(26,115,232,0.502);
+}
 @-moz-keyframes scroll-down {
   0% {
     opacity: 0.8;
