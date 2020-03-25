@@ -22,7 +22,7 @@
   <meta name="description" content="维他入我心的个人博客">
   <meta name="author" content="维他入我心">
   <meta name="keywords" content="前端博客,博客,物理竞赛,JavaScript,Java,Android,安卓,科技,数码,高中,学生,生活">
-  <title>OnlinePython ~ 维他入我心</title>
+  <title>Hex2RGBA ~ 维他入我心</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -170,72 +170,39 @@
 
 <div class="page-content">
   <div class="markdown-body">
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><script src="https://skulpt.org/js/skulpt.min.js" type="text/javascript"></script> 
-    <script src="https://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script> 
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>  
-<body> 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript"> 
-
-function outf(text) { 
-    var mypre = document.getElementById("output"); 
-    mypre.innerHTML = mypre.innerHTML + text; 
-} 
-function builtinRead(x) {
-    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-            throw "File not found: '" + x + "'";
-    return Sk.builtinFiles["files"][x];
-}
-function runit() { 
-   var prog = document.getElementById("yourcode").value; 
-   var mypre = document.getElementById("output"); 
-   mypre.innerHTML = ''; 
-   Sk.pre = "output";
-   Sk.configure({output:outf, read:builtinRead}); 
-
-   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
-   var myPromise = Sk.misceval.asyncToPromise(function() {
-       return Sk.importMainWithBody("<stdin>", false, prog, true);
-   });
-
-   myPromise.then(function(mod) {
-       console.log('success');
-   },
-       function(err) {
-       console.log(err.toString());
-   });
-} 
-</script> 
-<h3>基于skulpt的在线Python运行</h3> 
-<blockquote>
-<p>skulpt通过将Python代码转换成js代码，在您的浏览器直接运行Python代码。但skulpt对Python3的兼容性一般，所以本demo只能拿来水信息课。</p>
-</blockquote>
-<form> 
-<textarea class="form-control validate" id="yourcode" rows="10">
-print('Hello World!')
-import turtle as t
-t.penup()
-t.goto(0,-150)
-t.pendown()
-t.pensize(2)
-t.pencolor("red")
-t.left(45)
-t.fd(200)
-t.circle(100, 180)
-t.right(90)
-t.circle(100, 180)
-t.fd(200)
-t.done()
-</textarea><br />
-<button type="button" class="rkmd-btn btn-lightBlue waves-effect waves-dark" onclick="runit()">Run</button>
-</form> 
-输出区域：
-<pre id="output" ></pre> 
-<div id="mycanvas"></div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body> 
-</html> 
-
+    <body>
+        <script type="text/javascript">
+            // 将hex颜色转成rgba
+            function hexToRgba() {
+                var hex = document.getElementById("hexInput").value
+                var opacity = document.getElementById("opacityInput").value
+                var RGBA = "rgba(" + parseInt("0x" + hex.slice(1, 3)) + "," + parseInt("0x" + hex.slice(3, 5)) + "," + parseInt("0x" + hex.slice(5, 7)) + "," + opacity + ")";
+                document.getElementById("result").innerHTML = RGBA;
+                return {
+                    red: parseInt("0x" + hex.slice(1, 3)),
+                    green: parseInt("0x" + hex.slice(3, 5)),
+                    blue: parseInt("0x" + hex.slice(5, 7)),
+                    rgba: RGBA
+                }
+            }
+        </script>
+        <div>
+            <div class="md-form mb-5">
+                <input type="text" id="hexInput" class="form-control validate">
+                <label for="hexInput" class="">请输入16进制颜色代码</label>
+            </div>
+            <div class="md-form mb-5">
+                <input type="text" id="opacityInput" class="form-control validate">
+                <label for="opacityInput" class="">请输入色彩透明度</label>
+            </div>
+            <div align="right">
+                <button class="rkmd-btn btn-lightBlue waves-effect waves-dark" onclick="hexToRgba()">Go</button>
+            </div>
+            <p>输出结果：</p>
+            <p id="result"></p>
+        </div>
+    </body>
+</div>
 </div>
 
               </div>
@@ -375,7 +342,7 @@ t.done()
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "OnlinePython&nbsp;",
+        "Hex2RGBA&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
