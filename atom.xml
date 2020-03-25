@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtrwx.top/"/>
-  <updated>2020-03-23T06:24:44.146Z</updated>
+  <updated>2020-03-25T03:04:55.264Z</updated>
   <id>https://wtrwx.top/</id>
   
   <author>
@@ -17,21 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>给你的博客添加根据时间切换背景</title>
-    <link href="https://wtrwx.top/20200322/add-timeshifted-background-to-your-blog.html"/>
-    <id>https://wtrwx.top/20200322/add-timeshifted-background-to-your-blog.html</id>
+    <title>博客美化日志</title>
+    <link href="https://wtrwx.top/20200322/blog-landscaping-log.html"/>
+    <id>https://wtrwx.top/20200322/blog-landscaping-log.html</id>
     <published>2020-03-22T12:15:00.000Z</published>
-    <updated>2020-03-23T06:24:44.146Z</updated>
+    <updated>2020-03-25T03:04:55.264Z</updated>
     
-    <content type="html"><![CDATA[<p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p><p>不多废话了，直接上代码，简单得很。</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBg</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();    <span class="hljs-keyword">var</span> hour = date.getHours();    <span class="hljs-keyword">var</span> bgView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"background"</span>);    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">0</span> &amp;&amp; hour &lt; <span class="hljs-number">6</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example1.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">6</span> &amp;&amp; hour &lt; <span class="hljs-number">16</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example2.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">16</span> &amp;&amp; hour &lt; <span class="hljs-number">19</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example3.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">19</span> &amp;&amp; hour &lt;= <span class="hljs-number">23</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example4.png)"</span>    }  }  changeBg();</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="一-javascript"><a class="markdownIt-Anchor" href="#一-javascript"></a> 一、JavaScript</h1><h2 id="1根据时间切换背景"><a class="markdownIt-Anchor" href="#1根据时间切换背景"></a> 1.根据时间切换背景</h2><p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p><p>不多废话了，直接上代码，简单得很。</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBg</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();    <span class="hljs-keyword">var</span> hour = date.getHours();    <span class="hljs-keyword">var</span> bgView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"background"</span>);    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">0</span> &amp;&amp; hour &lt; <span class="hljs-number">6</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example1.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">6</span> &amp;&amp; hour &lt; <span class="hljs-number">16</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example2.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">16</span> &amp;&amp; hour &lt; <span class="hljs-number">19</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example3.png)"</span>    }    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">19</span> &amp;&amp; hour &lt;= <span class="hljs-number">23</span>) {      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example4.png)"</span>    }  }  changeBg();</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><h1 id="二-css"><a class="markdownIt-Anchor" href="#二-css"></a> 二、CSS</h1><h2 id="1自定义滚动条样式"><a class="markdownIt-Anchor" href="#1自定义滚动条样式"></a> 1.自定义滚动条样式</h2><p>在<code>\myBlog\themes\fluid\source\css\ _pages\ _base\base.styl</code>中添加以下代码。</p><pre class="highlight"><code class="stylus"><span class="hljs-comment">/* 自定义滚动条 */</span><span class="hljs-comment">/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */</span>::-webkit-scrollbar {  <span class="hljs-attribute">width</span>: <span class="hljs-number">10px</span>;  <span class="hljs-attribute">height</span>: <span class="hljs-number">16px</span>;}<span class="hljs-comment">/* 定义滚动条轨道 */</span>::-webkit-scrollbar-track {  <span class="hljs-attribute">background-color</span>: rgba(<span class="hljs-number">227</span>, <span class="hljs-number">242</span>, <span class="hljs-number">253</span>, <span class="hljs-number">1</span>);}<span class="hljs-comment">/* 定义滑块 */</span>::-webkit-scrollbar-thumb {  <span class="hljs-attribute">background-color</span>: rgba(<span class="hljs-number">26</span>, <span class="hljs-number">115</span>, <span class="hljs-number">232</span>, <span class="hljs-number">0.502</span>);}</code></pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;先把原来&lt;code&gt;layout.ejs&lt;/code&gt;中根据&lt;code&gt;config.yml&lt;/code&gt;设置背景的代码删了，调整一下样式。&lt;/p&gt;
-&lt;p&gt;不多废话了，直接上代码，简单得很。&lt;/p&gt;
-&lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;h
+        &lt;h1 id=&quot;一-javascript&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#一-javascript&quot;&gt;&lt;/a&gt; 一、JavaScript&lt;/h1&gt;
+&lt;h2 id=&quot;1根据时间切换背景&quot;&gt;&lt;a class=&quot;markdownIt-Ancho
       
     
     </summary>

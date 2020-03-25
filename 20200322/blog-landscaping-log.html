@@ -22,7 +22,7 @@
   <meta name="description" content="维他入我心的个人博客">
   <meta name="author" content="维他入我心">
   <meta name="keywords" content="前端博客,博客,物理竞赛,JavaScript,Java,Android,安卓,科技,数码,高中,学生,生活">
-  <title>给你的博客添加根据时间切换背景 ~ 维他入我心</title>
+  <title>博客美化日志 ~ 维他入我心</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -162,7 +162,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    136 字
+                    243 字
                   </span>
                 
 
@@ -198,7 +198,9 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p>
+              <h1 id="一-javascript"><a class="markdownIt-Anchor" href="#一-javascript"></a> 一、JavaScript</h1>
+<h2 id="1根据时间切换背景"><a class="markdownIt-Anchor" href="#1根据时间切换背景"></a> 1.根据时间切换背景</h2>
+<p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p>
 <p>不多废话了，直接上代码，简单得很。</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBg</span>(<span class="hljs-params"></span>) </span>{
@@ -220,6 +222,26 @@
   }
   changeBg();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h1 id="二-css"><a class="markdownIt-Anchor" href="#二-css"></a> 二、CSS</h1>
+<h2 id="1自定义滚动条样式"><a class="markdownIt-Anchor" href="#1自定义滚动条样式"></a> 1.自定义滚动条样式</h2>
+<p>在<code>\myBlog\themes\fluid\source\css\ _pages\ _base\base.styl</code>中添加以下代码。</p>
+<pre class="highlight"><code class="stylus"><span class="hljs-comment">/* 自定义滚动条 */</span>
+<span class="hljs-comment">/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */</span>
+::-webkit-scrollbar {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">16px</span>;
+}
+
+<span class="hljs-comment">/* 定义滚动条轨道 */</span>
+::-webkit-scrollbar-track {
+  <span class="hljs-attribute">background-color</span>: rgba(<span class="hljs-number">227</span>, <span class="hljs-number">242</span>, <span class="hljs-number">253</span>, <span class="hljs-number">1</span>);
+}
+
+<span class="hljs-comment">/* 定义滑块 */</span>
+::-webkit-scrollbar-thumb {
+  <span class="hljs-attribute">background-color</span>: rgba(<span class="hljs-number">26</span>, <span class="hljs-number">115</span>, <span class="hljs-number">232</span>, <span class="hljs-number">0.502</span>);
+}
 </code></pre>
 
             </div>
@@ -502,7 +524,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "给你的博客添加根据时间切换背景&nbsp;",
+        "博客美化日志&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
