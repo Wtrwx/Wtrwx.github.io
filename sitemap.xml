@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wtrwx.top/OnlinePython/index.html</loc>
+    
+    <lastmod>2020-03-26T03:25:52.865Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wtrwx.top/Hex2RGBA/index.html</loc>
     
-    <lastmod>2020-03-25T07:34:11.996Z</lastmod>
+    <lastmod>2020-03-25T07:34:57.151Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://wtrwx.top/tools/index.html</loc>
     
     <lastmod>2020-03-25T07:08:55.611Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wtrwx.top/OnlinePython/index.html</loc>
-    
-    <lastmod>2020-03-25T06:45:45.207Z</lastmod>
     
   </url>
   
@@ -149,14 +149,14 @@
   </url>
   
   <url>
-    <loc>https://wtrwx.top/RSS/index.html</loc>
+    <loc>https://wtrwx.top/about/index.html</loc>
     
     <lastmod>2020-03-15T10:45:38.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wtrwx.top/about/index.html</loc>
+    <loc>https://wtrwx.top/RSS/index.html</loc>
     
     <lastmod>2020-03-15T10:45:38.000Z</lastmod>
     
