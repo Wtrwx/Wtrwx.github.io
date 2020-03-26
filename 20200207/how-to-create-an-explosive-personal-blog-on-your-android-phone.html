@@ -405,6 +405,7 @@ git remote add origin git@github.com:github用户名/github用户名.github.
           var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
           if (night == '0') {
             document.body.classList.remove('night');
+            bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
             header.style.height = "100%";
           } else if (night == '1') {
             document.body.classList.add('night');
