@@ -49,15 +49,15 @@
 
 <body>
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 80vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header" style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar" data-toggle="collapse">
   <div class="container">
     <a class="navbar-brand"
       href="/">&nbsp;<strong>维他入我心</strong>&nbsp;</a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button"
+      οndblclick="dblclickt()" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
@@ -139,8 +139,10 @@
     </div>
   </div>
 </nav>
-    <div class="view intro-2" id="background" parallax=true style="background: url('https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png') no-repeat center center;
-           background-size: cover;">
+
+    <div class="view intro-2" id="background">
+      parallax=true
+      style="background: center center / cover no-repeat; background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center">
           <div class="container text-center white-text fadeInUp">
@@ -331,6 +333,54 @@
 <!-- Custom -->
 
     
+    <script type="text/javascript">
+      (function () {
+        var header = document.getElementById("header");
+        var bgView = document.getElementById("background");
+        if (document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '') {
+          if (new Date().getHours() > 22 || new Date().getHours() < 6) {
+            document.body.classList.add('night');
+            document.cookie = "night=1;path=/";
+            bgView.style.backgroundImage = ""
+            header.style.height = "50%";
+            console.log('夜间模式开启');
+          } else {
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/";
+            bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+            header.style.height = "100%";
+            console.log('夜间模式关闭');
+          }
+        } else {
+          var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+          if (night == '0') {
+            document.body.classList.remove('night');
+            header.style.height = "100%";
+          } else if (night == '1') {
+            document.body.classList.add('night');
+            header.style.height = "50%";
+          }
+        }
+      })();
+      function switchNightMode() {
+        var header = document.getElementById("header");
+        var bgView = document.getElementById("background");
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if (night == '0') {
+          document.body.classList.add('night');
+          document.cookie = "night=1;path=/"
+          bgView.style.backgroundImage = ""
+          header.style.height = "50%";
+          console.log('夜间模式开启');
+        } else {
+          document.body.classList.remove('night');
+          document.cookie = "night=0;path=/"
+          bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+          header.style.height = "100%";
+          console.log('夜间模式关闭');
+        }
+      }
+    </script>
   </main>
 
   
@@ -562,7 +612,21 @@
 
   
     <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" /><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+  <div align="center">
+    <button id="nightmode" class="rkmd-btn btn-flat waves-effect waves-dark"
+      onclick="switchNightMode()">Day/Night</button>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -580,17 +644,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
