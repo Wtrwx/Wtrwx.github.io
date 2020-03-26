@@ -760,6 +760,10 @@ body.night .pagination a:hover,
 .pagination .current {
   background-color: rgba(0,0,0,0.15);
 }
+body.night .vbtn {
+  background-color: #424242 !important;
+  color: #e1e1e1 !important;
+}
 @-moz-keyframes scroll-down {
   0% {
     opacity: 0.8;
