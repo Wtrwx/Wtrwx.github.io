@@ -660,6 +660,15 @@ body.night #board {
 body.night img {
   filter: brightness(70%);
 }
+body.night .form-control {
+  filter: brightness(70%);
+}
+body.night .code-block {
+  filter: brightness(70%);
+}
+body.night .prettyprint {
+  filter: brightness(70%);
+}
 body.night .navbar {
   background-color: #212121;
   font-size: 0.875rem;
@@ -720,9 +729,6 @@ body.night .close {
 }
 body.night .scroll-down-bar {
   display: none;
-}
-body.night .code-block {
-  filter: brightness(70%);
 }
 body.night .scroll-top-arrow {
   color: #e1e1e1;
