@@ -631,6 +631,17 @@ body.night .markdown-body strong {
   font-weight: bold;
   color: #e1e1e1;
 }
+body.night .markdown-body blockquote {
+  color: #fff;
+}
+body.night .markdown-body blockquote p > img,
+body.night .markdown-body blockquote p > a > img {
+  max-width: 90%;
+  color: #e1e1e1;
+  margin: 1.5rem auto;
+  display: block;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
+}
 body.night .markdown-body p > img,
 body.night .markdown-body p > a > img {
   max-width: 90%;
@@ -695,15 +706,6 @@ body.night .vsys {
   background-color: #424242 !important;
   color: #e1e1e1 !important;
 }
-body.night .page-number {
-  background-color: #424242;
-}
-body.night .page-number a {
-  color: #fff;
-}
-body.night .page-number:hover {
-  background-color: rgba(0,0,0,0.3);
-}
 body.night .extend:hover {
   background-color: rgba(0,0,0,0.3);
 }
@@ -739,6 +741,24 @@ body.night .btn-flat {
 body.night .btn-flat:hover {
   background-color: rgba(0,0,0,0.7) !important;
   box-shadow: none !important;
+}
+body.night .pagination a,
+.pagination .current {
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.25;
+  -webkit-border-radius: 0.125rem;
+  border-radius: 0.125rem;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+body.night .pagination a:hover,
+.pagination .current {
+  background-color: rgba(0,0,0,0.15);
 }
 @-moz-keyframes scroll-down {
   0% {
