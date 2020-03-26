@@ -162,7 +162,7 @@
               
               <span class="post-meta">
                 <i class="far fa-chart-bar"></i>
-                243 字
+                221 字
               </span>
               
 
@@ -203,24 +203,21 @@
 <p>先把原来<code>layout.ejs</code>中根据<code>config.yml</code>设置背景的代码删了，调整一下样式。</p>
 <p>不多废话了，直接上代码，简单得很。</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBg</span>(<span class="hljs-params"></span>) </span>{
+  (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
     <span class="hljs-keyword">var</span> hour = date.getHours();
     <span class="hljs-keyword">var</span> bgView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"background"</span>);
-    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">0</span> &amp;&amp; hour &lt; <span class="hljs-number">6</span>) {
-      bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example1.png)"</span>
-    }
+
     <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">6</span> &amp;&amp; hour &lt; <span class="hljs-number">16</span>) {
       bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example2.png)"</span>
     }
     <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">16</span> &amp;&amp; hour &lt; <span class="hljs-number">19</span>) {
       bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example3.png)"</span>
     }
-    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">19</span> &amp;&amp; hour &lt;= <span class="hljs-number">23</span>) {
+    <span class="hljs-keyword">if</span> (hour &gt;= <span class="hljs-number">21</span> || hour &lt; <span class="hljs-number">7</span>) {
       bgView.style.backgroundImage = <span class="hljs-string">"url(https://example.com/example4.png)"</span>
     }
-  }
-  changeBg();
+  })();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <h1 id="二-css"><a class="markdownIt-Anchor" href="#二-css"></a> 二、CSS</h1>
@@ -261,9 +258,9 @@
                 <span>
                   <i class="iconfont icon-tag"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Blog/">Blog</a>
-                  
                   <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Blog/">Blog</a>
                   
                 </span>
                 
@@ -341,45 +338,38 @@
 
     
     <script type="text/javascript">
-      function autoSwitchDarkMode() {
+      (function () {
         var date = new Date();
         var hour = date.getHours();
         var header = document.getElementById("header");
         var bgView = document.getElementById("background");
-        if (hour >= 0 && hour < 7) {
-          document.body.classList.add('night');
-          document.cookie = "night=1;path=/";
+        if (hour >= 21 || hour < 7) {
+          document.body.classList.add('dark');
+          document.cookie = "dark=1;path=/";
           bgView.style.backgroundImage = ""
           header.style.height = "50%";
           console.log('夜间模式开启');
         }
+      })();
 
-        if (hour >= 21 && hour <= 23) {
-          document.body.classList.add('night');
-          document.cookie = "night=1;path=/";
+      function switchDarkMode() {
+        var header = document.getElementById("header");
+        var bgView = document.getElementById("background");
+        var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if (dark == '0') {
+          document.body.classList.add('dark');
+          document.cookie = "dark=1;path=/"
           bgView.style.backgroundImage = ""
           header.style.height = "50%";
           console.log('夜间模式开启');
+        } else {
+          document.body.classList.remove('dark');
+          document.cookie = "dark=0;path=/"
+          bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+          header.style.height = "100%";
+          console.log('夜间模式关闭');
         }
-        autoSwitchDarkMode();
-        function switchDarkMode() {
-          var header = document.getElementById("header");
-          var bgView = document.getElementById("background");
-          var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-          if (night == '0') {
-            document.body.classList.add('night');
-            document.cookie = "night=1;path=/"
-            bgView.style.backgroundImage = ""
-            header.style.height = "50%";
-            console.log('夜间模式开启');
-          } else {
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/"
-            bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-            header.style.height = "100%";
-            console.log('夜间模式关闭');
-          }
-        }
+      }
     </script>
   </main>
 
@@ -617,7 +607,7 @@
 
 
   <div align="center">
-    <button id="nightmode" class="rkmd-btn btn-flat waves-effect waves-dark"
+    <button id="darkmode" class="rkmd-btn btn-flat waves-effect waves-dark"
       onclick="switchDarkMode()">Day/Night</button>
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">

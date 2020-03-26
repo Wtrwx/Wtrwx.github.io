@@ -594,161 +594,161 @@ main section .wrap .holder.col-4:nth-child(n) {
 ::-webkit-scrollbar-thumb {
   background-color: rgba(26,115,232,0.502);
 }
-body.night {
+body.dark {
   background-color: #212121;
   color: #ccc;
 }
-body.night a {
+body.dark a {
   color: #e1e1e1;
 }
-body.night a:hover {
+body.dark a:hover {
   color: #82b1ff;
 }
-body.night .markdown-body {
+body.dark .markdown-body {
   margin-bottom: 2rem;
   color: #e1e1e1;
 }
-body.night .markdown-body strong {
+body.dark .markdown-body strong {
   font-weight: bold;
   color: #e1e1e1;
 }
-body.night .markdown-body h1,
-body.night .markdown-body h2,
-body.night .markdown-body h3,
-body.night .markdown-body h4,
-body.night .markdown-body h5,
-body.night .markdown-body h6 {
+body.dark .markdown-body h1,
+body.dark .markdown-body h2,
+body.dark .markdown-body h3,
+body.dark .markdown-body h4,
+body.dark .markdown-body h5,
+body.dark .markdown-body h6 {
   margin-bottom: 0.75em;
   margin-top: 2em;
   color: #e1e1e1;
 }
-body.night .markdown-body hr {
+body.dark .markdown-body hr {
   height: 0.2em;
   margin: 2rem 0;
   color: #e1e1e1;
 }
-body.night .markdown-body strong {
+body.dark .markdown-body strong {
   font-weight: bold;
   color: #e1e1e1;
 }
-body.night .markdown-body blockquote {
+body.dark .markdown-body blockquote {
   color: #fff;
 }
-body.night .markdown-body blockquote p > img,
-body.night .markdown-body blockquote p > a > img {
+body.dark .markdown-body blockquote p > img,
+body.dark .markdown-body blockquote p > a > img {
   max-width: 90%;
   color: #e1e1e1;
   margin: 1.5rem auto;
   display: block;
   box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
 }
-body.night .markdown-body p > img,
-body.night .markdown-body p > a > img {
+body.dark .markdown-body p > img,
+body.dark .markdown-body p > a > img {
   max-width: 90%;
   color: #e1e1e1;
   margin: 1.5rem auto;
   display: block;
   box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15) !important;
 }
-body.night #board {
+body.dark #board {
   position: relative;
   margin-top: -2rem;
   background-color: #424242;
   border-radius: 0.5rem;
   z-index: 3;
 }
-body.night img {
+body.dark img {
   filter: brightness(70%);
 }
-body.night .form-control {
+body.dark .form-control {
   filter: brightness(70%);
 }
-body.night .code-block {
+body.dark .code-block {
   filter: brightness(70%);
 }
-body.night .prettyprint {
+body.dark .prettyprint {
   filter: brightness(70%);
 }
-body.night .navbar {
+body.dark .navbar {
   background-color: #212121;
   font-size: 0.875rem;
   color: #fff;
 }
-body.night .navbar a {
+body.dark .navbar a {
   color: #fff;
 }
-body.night .navbar a:hover {
+body.dark .navbar a:hover {
   background-color: rgba(0,0,0,0.1);
 }
-body.night .navbar a {
+body.dark .navbar a {
   color: #fff;
 }
-body.night .list-group-item {
+body.dark .list-group-item {
   background-color: #424242;
   border: 0;
 }
-body.night .card {
+body.dark .card {
   background-color: #424242;
 }
-body.night .card-body {
+body.dark .card-body {
   background-color: #424242;
 }
-body.night .card-body:hover {
+body.dark .card-body:hover {
   background-color: rgba(0,0,0,0.1);
 }
-body.night .link-title {
+body.dark .link-title {
   color: #e1e1e1;
 }
-body.night .note {
+body.dark .note {
   background-color: #424242;
 }
-body.night .vinput {
+body.dark .vinput {
   color: #e1e1e1 !important;
 }
-body.night .vcontent {
+body.dark .vcontent {
   color: #e1e1e1 !important;
 }
-body.night .vcontent p {
+body.dark .vcontent p {
   color: #fff;
 }
-body.night .vsys {
+body.dark .vsys {
   background-color: #424242 !important;
   color: #e1e1e1 !important;
 }
-body.night .extend:hover {
+body.dark .extend:hover {
   background-color: rgba(0,0,0,0.3);
 }
-body.night .modal-content {
+body.dark .modal-content {
   background-color: #424242;
 }
-body.night #local-search-input {
+body.dark #local-search-input {
   color: #e1e1e1 !important;
 }
-body.night .close {
+body.dark .close {
   color: #fff;
 }
-body.night .scroll-down-bar {
+body.dark .scroll-down-bar {
   display: none;
 }
-body.night .scroll-top-arrow {
+body.dark .scroll-top-arrow {
   color: #e1e1e1;
   background-color: #424242;
 }
-body.night #scroll-top-button {
+body.dark #scroll-top-button {
   background-color: #424242;
 }
-body.night #nightmode {
+body.dark #darkmode {
   color: #e1e1e1;
 }
-body.night .btn-flat {
+body.dark .btn-flat {
   box-shadow: none !important;
   background-color: transparent !important;
 }
-body.night .btn-flat:hover {
+body.dark .btn-flat:hover {
   background-color: rgba(0,0,0,0.7) !important;
   box-shadow: none !important;
 }
-body.night .pagination a,
+body.dark .pagination a,
 .pagination .current {
   outline: 0;
   border: 0;
@@ -762,11 +762,11 @@ body.night .pagination a,
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
-body.night .pagination a:hover,
+body.dark .pagination a:hover,
 .pagination .current {
   background-color: rgba(0,0,0,0.15);
 }
-body.night .vbtn {
+body.dark .vbtn {
   background-color: #424242 !important;
   color: #e1e1e1 !important;
 }

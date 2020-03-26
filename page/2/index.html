@@ -594,45 +594,38 @@ installedPKGInfo
     </div>
     
     <script type="text/javascript">
-      function autoSwitchDarkMode() {
+      (function () {
         var date = new Date();
         var hour = date.getHours();
         var header = document.getElementById("header");
         var bgView = document.getElementById("background");
-        if (hour >= 0 && hour < 7) {
-          document.body.classList.add('night');
-          document.cookie = "night=1;path=/";
+        if (hour >= 21 || hour < 7) {
+          document.body.classList.add('dark');
+          document.cookie = "dark=1;path=/";
           bgView.style.backgroundImage = ""
           header.style.height = "50%";
           console.log('夜间模式开启');
         }
+      })();
 
-        if (hour >= 21 && hour <= 23) {
-          document.body.classList.add('night');
-          document.cookie = "night=1;path=/";
+      function switchDarkMode() {
+        var header = document.getElementById("header");
+        var bgView = document.getElementById("background");
+        var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if (dark == '0') {
+          document.body.classList.add('dark');
+          document.cookie = "dark=1;path=/"
           bgView.style.backgroundImage = ""
           header.style.height = "50%";
           console.log('夜间模式开启');
+        } else {
+          document.body.classList.remove('dark');
+          document.cookie = "dark=0;path=/"
+          bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+          header.style.height = "100%";
+          console.log('夜间模式关闭');
         }
-        autoSwitchDarkMode();
-        function switchDarkMode() {
-          var header = document.getElementById("header");
-          var bgView = document.getElementById("background");
-          var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-          if (night == '0') {
-            document.body.classList.add('night');
-            document.cookie = "night=1;path=/"
-            bgView.style.backgroundImage = ""
-            header.style.height = "50%";
-            console.log('夜间模式开启');
-          } else {
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/"
-            bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-            header.style.height = "100%";
-            console.log('夜间模式关闭');
-          }
-        }
+      }
     </script>
   </main>
 
@@ -817,7 +810,7 @@ installedPKGInfo
 
 
   <div align="center">
-    <button id="nightmode" class="rkmd-btn btn-flat waves-effect waves-dark"
+    <button id="darkmode" class="rkmd-btn btn-flat waves-effect waves-dark"
       onclick="switchDarkMode()">Day/Night</button>
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
