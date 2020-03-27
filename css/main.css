@@ -597,13 +597,13 @@ main section .wrap .holder.col-4:nth-child(n) {
 #MathJax_Message {
   display: none;
 }
-.darkmode {
+#darkmode:focus {
   outline: none;
 }
-.runPython {
+#drunPython:focus {
   outline: none;
 }
-.hex2rgba {
+#dhex2rgba:focus {
   outline: none;
 }
 body.dark {
