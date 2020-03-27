@@ -594,6 +594,9 @@ main section .wrap .holder.col-4:nth-child(n) {
 ::-webkit-scrollbar-thumb {
   background-color: rgba(26,115,232,0.502);
 }
+#MathJax_Message {
+  display: none;
+}
 body.dark {
   background-color: #212121;
   color: #ccc;
