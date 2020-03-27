@@ -213,13 +213,13 @@
         var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         if (matchMedia('(prefers-color-scheme: dark)').matches) {
           document.body.classList.add('dark');
-          document.cookie = "dark=1;path=/"
+          document.cookie = "dark=3;path=/"
           bgView.style.backgroundImage = ""
           header.style.height = "50%";
-          console.log('夜间模式开启1');
+          console.log('夜间模式开启3');
         } else {
           if (hour >= 21 || hour < 7) {
-            if (dark == '' || dark == '0' || dark == '1' || dark == '4') {
+            if (dark == '' || dark == '0' || dark == '1' || dark == '3' || dark == '4') {
               document.body.classList.add('dark');
               document.cookie = "dark=3;path=/"
               bgView.style.backgroundImage = ""
