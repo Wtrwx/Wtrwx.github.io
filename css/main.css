@@ -597,6 +597,15 @@ main section .wrap .holder.col-4:nth-child(n) {
 #MathJax_Message {
   display: none;
 }
+.darkmode {
+  outline: none;
+}
+.runPython {
+  outline: none;
+}
+.hex2rgba {
+  outline: none;
+}
 body.dark {
   background-color: #212121;
   color: #ccc;
