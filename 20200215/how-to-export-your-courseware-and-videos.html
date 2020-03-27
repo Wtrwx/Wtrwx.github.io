@@ -387,6 +387,11 @@ Pad进入少年派设置，清除缓存，再点击你要下载的课件<br />
         }
       })();
       function switchDarkMode() {
+        var date = new Date();
+        var hour = date.getHours();
+        var header = document.getElementById("header");
+        var bgView = document.getElementById("background");
+        var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         if (hour >= 21 || hour < 7) {
           if (dark == '1' || dark == '3') {
             document.body.classList.remove('dark');
