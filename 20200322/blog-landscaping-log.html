@@ -335,74 +335,74 @@
 <p>Snackbar是Android挺好用的一个组件，用css仿一下吧，效果可以点代码框旁边的copy体验。</p>
 <p>这部分是抄<a href="https://c.runoob.com/codedemo/3145" target="_blank" rel="noopener">菜鸟工具</a>的。</p>
 <pre class="highlight"><code class="stylus"><span class="hljs-selector-id">#snackbar</span> {
- <span class="hljs-attribute">visibility</span>: hidden;
- <span class="hljs-attribute">min-width</span>: <span class="hljs-number">300px</span>;
- <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;
- <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#323232</span>;
- <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
- <span class="hljs-attribute">text-align</span>: center;
- <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
- <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;
- <span class="hljs-attribute">position</span>: fixed;
- <span class="hljs-attribute">z-index</span>: <span class="hljs-number">4</span>;
- <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;
- <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;
- <span class="hljs-attribute">font-size</span>: <span class="hljs-number">15px</span>;
+  <span class="hljs-attribute">visibility</span>: hidden;
+  <span class="hljs-attribute">min-width</span>: <span class="hljs-number">300px</span>;
+  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#323232</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;
+  <span class="hljs-attribute">position</span>: fixed;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">4</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">15px</span>;
 }
 
-\<span class="hljs-selector-id">#snackbar</span><span class="hljs-selector-class">.show</span> {
- <span class="hljs-attribute">visibility</span>: visible;
- <span class="hljs-attribute">z-index</span>: <span class="hljs-number">4</span>;
- -webkit-<span class="hljs-attribute">animation</span>: fadein <span class="hljs-number">0.5s</span>, fadeout <span class="hljs-number">0.5s</span> <span class="hljs-number">2.5s</span>;
- <span class="hljs-attribute">animation</span>: fadein <span class="hljs-number">0.5s</span>, fadeout <span class="hljs-number">0.5s</span> <span class="hljs-number">2.5s</span>;
+<span class="hljs-selector-id">#snackbar</span><span class="hljs-selector-class">.show</span> {
+  <span class="hljs-attribute">visibility</span>: visible;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">4</span>;
+  -webkit-<span class="hljs-attribute">animation</span>: fadein <span class="hljs-number">0.5s</span>, fadeout <span class="hljs-number">0.5s</span> <span class="hljs-number">2.5s</span>;
+  <span class="hljs-attribute">animation</span>: fadein <span class="hljs-number">0.5s</span>, fadeout <span class="hljs-number">0.5s</span> <span class="hljs-number">2.5s</span>;
 }
 
 @keyframes fadein {
- from {
-  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
- }
+  from {
+    <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  }
 
- to {
-  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
- }
+  to {
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+  }
 }
 
 @keyframes fadein {
- from {
-  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
- }
+  from {
+    <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  }
 
- to {
-  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
- }
+  to {
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+  }
 }
 
 @keyframes fadeout {
- from {
-  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
- }
+  from {
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+  }
 
- to {
-  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
- }
+  to {
+    <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  }
 }
 
 @keyframes fadeout {
- from {
-  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
- }
+  from {
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+  }
 
- to {
-  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
-  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
- }
+  to {
+    <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  }
 }
 </code></pre>
 <p>html：</p>

@@ -791,7 +791,7 @@ body.dark .vbtn {
   position: fixed;
   z-index: 4;
   left: 50%;
-  bottom: 0px;
+  bottom: -20px;
   font-size: 15px;
 }
 #snackbar.show {
@@ -918,7 +918,7 @@ body.dark .vbtn {
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
@@ -928,7 +928,7 @@ body.dark .vbtn {
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
@@ -938,7 +938,7 @@ body.dark .vbtn {
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
@@ -948,53 +948,53 @@ body.dark .vbtn {
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
 @-moz-keyframes fadein {
   from {
-    bottom: -20px;
+    bottom: -20;
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
 @-webkit-keyframes fadein {
   from {
-    bottom: -20px;
+    bottom: -20;
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
 @-o-keyframes fadein {
   from {
-    bottom: -20px;
+    bottom: -20;
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
 @keyframes fadein {
   from {
-    bottom: -20px;
+    bottom: -20;
     opacity: 0;
   }
   to {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
 }
 @-moz-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1004,7 +1004,7 @@ body.dark .vbtn {
 }
 @-webkit-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1014,7 +1014,7 @@ body.dark .vbtn {
 }
 @-o-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1024,7 +1024,7 @@ body.dark .vbtn {
 }
 @keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1034,7 +1034,7 @@ body.dark .vbtn {
 }
 @-moz-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1044,7 +1044,7 @@ body.dark .vbtn {
 }
 @-webkit-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1054,7 +1054,7 @@ body.dark .vbtn {
 }
 @-o-keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
@@ -1064,7 +1064,7 @@ body.dark .vbtn {
 }
 @keyframes fadeout {
   from {
-    bottom: 0px;
+    bottom: 0;
     opacity: 1;
   }
   to {
