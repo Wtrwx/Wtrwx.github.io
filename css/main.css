@@ -782,7 +782,7 @@ body.dark .vbtn {
 #snackbar {
   visibility: hidden;
   min-width: 300px;
-  margin-left: -125px;
+  margin-left: -150px;
   background-color: #323232;
   color: #fff;
   text-align: center;
@@ -792,7 +792,7 @@ body.dark .vbtn {
   z-index: 4;
   left: 50%;
   bottom: 0px;
-  font-size: 17px;
+  font-size: 15px;
 }
 #snackbar.show {
   visibility: visible;
