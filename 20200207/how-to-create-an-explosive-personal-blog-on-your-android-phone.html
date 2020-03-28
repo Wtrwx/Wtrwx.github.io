@@ -385,8 +385,9 @@ git remote add origin git@github.com:github用户名/github用户名.github.
 
         
         <script type="text/javascript">
-            function showSnackbar() {
+            function showSnackbar(text) {
                 var x = document.getElementById("snackbar")
+                x.innerHTML = text;
                 x.className = "show";
                 setTimeout(function () {
                     x.className = x.className.replace("show", "");
@@ -416,9 +417,6 @@ git remote add origin git@github.com:github用户名/github用户名.github.
                 document.cookie = "dark=2;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
                 header.style.height = "100%";
-                var x = document.getElementById("snackbar")
-                x.innerHTML = "自动关闭夜间模式"
-                showSnackbar();
                 //console.log('夜间模式关闭2');
             }
 
@@ -427,9 +425,6 @@ git remote add origin git@github.com:github用户名/github用户名.github.
                 document.cookie = "dark=3;path=/"
                 bgView.style.backgroundImage = ""
                 header.style.height = "50%";
-                var x = document.getElementById("snackbar")
-                x.innerHTML = "自动开启夜间模式"
-                showSnackbar();
                 //console.log('夜间模式开启3');
             }
             (function () {
