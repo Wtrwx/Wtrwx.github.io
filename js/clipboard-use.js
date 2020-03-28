@@ -12,7 +12,7 @@
       },
     });
     clipboard.on('success', function (e) {
-      e.trigger.innerHTML = 'Success';
+      showSnackbar("复制成功");
       setTimeout(function () {
         e.trigger.outerHTML = copyHtml;
       }, 2000);
