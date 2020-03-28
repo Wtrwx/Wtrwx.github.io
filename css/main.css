@@ -34,7 +34,7 @@ img[srcset] {
   position: relative;
   margin-top: -2rem;
   background-color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   z-index: 3;
 }
 @media (max-width: 767px) {
