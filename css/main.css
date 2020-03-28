@@ -791,7 +791,7 @@ body.dark .vbtn {
   position: fixed;
   z-index: 4;
   left: 50%;
-  bottom: -20px;
+  bottom: 0px;
   font-size: 15px;
 }
 #snackbar.show {
