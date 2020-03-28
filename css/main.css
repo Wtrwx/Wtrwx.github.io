@@ -779,6 +779,27 @@ body.dark .vbtn {
   background-color: #424242 !important;
   color: #e1e1e1 !important;
 }
+#snackbar {
+  visibility: hidden;
+  min-width: 300px;
+  margin-left: -125px;
+  background-color: #323232;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 12px;
+  position: fixed;
+  z-index: 4;
+  left: 50%;
+  bottom: 0px;
+  font-size: 17px;
+}
+#snackbar.show {
+  visibility: visible;
+  z-index: 4;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 @-moz-keyframes scroll-down {
   0% {
     opacity: 0.8;
@@ -889,6 +910,166 @@ body.dark .vbtn {
   100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
+  }
+}
+@-moz-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  from {
+    bottom: -20px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    bottom: 0px;
+    opacity: 1;
+  }
+  to {
+    bottom: -20px;
+    opacity: 0;
   }
 }
 .index-card {
