@@ -47,10 +47,11 @@
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="维他入我心" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body>
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header" style="height: 80vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="snackbar"></div>
+    <header id="header" style="height: 80vh;">
+        <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
        href="/">&nbsp;<strong>维他入我心</strong>&nbsp;</a>
@@ -140,34 +141,35 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
-      style="background: center center / cover no-repeat; background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
+        <div class="view intro-2" id="background" parallax=true
+            style="background: center center / cover no-repeat; background-size: cover;">
 
-            
-          </div>
+            <div class="full-bg-img">
+                <div class="mask flex-center">
+                    <div class="container text-center white-text fadeInUp">
+                        <span class="h2" id="subtitle">
+                            
+                        </span>
 
-          
+                        
+                    </div>
+
+                    
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    
-    <div class="container nopadding-md">
-      <div class="py-5 z-depth-3" id="board"
-        >
+    <main>
         
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-md-10 m-auto">
-              
+        <div class="container nopadding-md">
+            <div class="py-5 z-depth-3" id="board"
+                >
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-10 m-auto">
+                            
 
 <div class="list-group">
 <!--  <p class="h4">共计 1 篇文章</p>-->
@@ -186,98 +188,121 @@
 
 
 
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
+        
+        <script type="text/javascript">
+            function showSnackbar() {
+                var x = document.getElementById("snackbar")
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 3000);
+            }
+            var header = document.getElementById("header");
+            var bgView = document.getElementById("background");
+
+            function closeDarkMode0() {
+                document.body.classList.remove('dark');
+                document.cookie = "dark=0;path=/"
+                bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+                header.style.height = "100%";
+                var x = document.getElementById("snackbar")
+                x.innerHTML = "关闭夜间模式"
+                showSnackbar();
+                //console.log('夜间模式关闭0');
+            }
+
+            function openDarkMode1() {
+                document.body.classList.add('dark');
+                document.cookie = "dark=1;path=/"
+                bgView.style.backgroundImage = ""
+                header.style.height = "50%";
+                var x = document.getElementById("snackbar")
+                x.innerHTML = "开启夜间模式"
+                showSnackbar();
+                //console.log('夜间模式开启1');
+            }
+
+            function closeDarkMode2() {
+                document.body.classList.remove('dark');
+                document.cookie = "dark=2;path=/"
+                bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
+                header.style.height = "100%";
+                var x = document.getElementById("snackbar")
+                x.innerHTML = "自动关闭夜间模式"
+                showSnackbar();
+                //console.log('夜间模式关闭2');
+            }
+
+            function openDarkMode3() {
+                document.body.classList.add('dark');
+                document.cookie = "dark=3;path=/"
+                bgView.style.backgroundImage = ""
+                header.style.height = "50%";
+                var x = document.getElementById("snackbar")
+                x.innerHTML = "自动开启夜间模式"
+                showSnackbar();
+                //console.log('夜间模式开启3');
+            }
+            (function () {
+                var date = new Date();
+                var hour = date.getHours();
+                var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                if (matchMedia('(prefers-color-scheme: dark)').matches) {
+                    openDarkMode3();
+                } else {
+                    if (hour >= 21 || hour < 7) {
+                        if (dark == '' || dark == '0' || dark == '1' || dark == '3') {
+                            openDarkMode3();
+                        } else if (dark == '2') {
+                            closeDarkMode2();
+                        }
+                    } else {
+                        if (dark == '' || dark == '0' || dark == '3') {
+                            closeDarkMode0();
+                        } else if (dark == '2') {
+                            closeDarkMode2();
+                        }
+                        if (dark == '1') {
+                            openDarkMode1();
+                        }
+                    }
+                }
+            })();
+
+            function switchDarkMode() {
+                var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                var date = new Date();
+                var hour = date.getHours();
+                if (hour >= 21 || hour < 7) {
+                    if (dark == '1' || dark == '3') {
+                        closeDarkMode2();
+                    } else if (dark == '2') {
+                        openDarkMode1();
+                    }
+                } else {
+                    if (dark == '0' || dark == '2') {
+                        openDarkMode1();
+                    } else if (dark == '1' || dark == '3') {
+                        closeDarkMode0();
+                    }
+                }
+            }
+        </script>
+    </main>
+
     
-    <script type="text/javascript">
-      var header = document.getElementById("header");
-      var bgView = document.getElementById("background");
-      function closeDarkMode0() {
-        document.body.classList.remove('dark');
-        document.cookie = "dark=0;path=/"
-        bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-        header.style.height = "100%";
-        //console.log('夜间模式关闭0');
-      }
-      function openDarkMode1() {
-        document.body.classList.add('dark');
-        document.cookie = "dark=1;path=/"
-        bgView.style.backgroundImage = ""
-        header.style.height = "50%";
-        //console.log('夜间模式开启1');
-      }
-      function closeDarkMode2() {
-        document.body.classList.remove('dark');
-        document.cookie = "dark=2;path=/"
-        bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-        header.style.height = "100%";
-        //console.log('夜间模式关闭2');
-      }
-      function openDarkMode3() {
-        document.body.classList.add('dark');
-        document.cookie = "dark=3;path=/"
-        bgView.style.backgroundImage = ""
-        header.style.height = "50%";
-        //console.log('夜间模式开启3');
-      }
-      (function () {
-        var date = new Date();
-        var hour = date.getHours();
-        var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (matchMedia('(prefers-color-scheme: dark)').matches) {
-          openDarkMode3();
-        } else {
-          if (hour >= 21 || hour < 7) {
-            if (dark == '' || dark == '0' || dark == '1' || dark == '3') {
-              openDarkMode3();
-            } else if (dark == '2') {
-              closeDarkMode2();
-            }
-          }
-          else {
-            if (dark == '' || dark == '0' || dark == '3') {
-              closeDarkMode0();
-            } else if (dark == '2') {
-              closeDarkMode2();
-            } if (dark == '1') {
-              openDarkMode1();
-            }
-          }
-        }
-      })();
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+        <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+    
 
-      function switchDarkMode() {
-        var dark = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        var date = new Date();
-        var hour = date.getHours();
-        if (hour >= 21 || hour < 7) {
-          if (dark == '1' || dark == '3') {
-            closeDarkMode2();
-          } else if (dark == '2') {
-            openDarkMode1();
-          }
-        } else {
-          if (dark == '0' || dark == '2') {
-            openDarkMode1();
-          } else if (dark == '1' || dark == '3') {
-            closeDarkMode0();
-          }
-        }
-      }
-    </script>
-  </main>
-
-  
-  <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-    <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
-  </a>
-  
-
-  
-  <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -298,13 +323,13 @@
     </div>
   </div>
 </div>
-  
+    
 
-  
+    
 
-  
+    
 
-  <footer class="mt-5">
+    <footer class="mt-5">
   <div class="text-center py-3">
     <div>
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
@@ -450,10 +475,10 @@
 
 
 
-  <div align="center">
-    <button id="darkmode" class="rkmd-btn btn-flat waves-effect waves-dark"
-      onclick="switchDarkMode()">Day/Night</button>
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <div align="center">
+        <button id="darkmode" class="rkmd-btn btn-flat waves-effect waves-dark"
+            onclick="switchDarkMode()">Day/Night</button>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 
 </html>
