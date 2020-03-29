@@ -158,7 +158,7 @@ $(document).ready(function () {
 
       setTimeout(function () {
         ripple.remove();
-      }, 800);
+      }, 1000);
 
     });
   };
