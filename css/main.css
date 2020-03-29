@@ -815,10 +815,7 @@ body.dark .form-control {
   filter: brightness(70%);
 }
 body.dark .code-block {
-  filter: brightness(70%);
-}
-body.dark .prettyprint {
-  filter: brightness(70%);
+  opacity: 0.5;
 }
 body.dark .navbar {
   background-color: #212121;
