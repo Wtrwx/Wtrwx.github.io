@@ -808,7 +808,6 @@ body.dark .view .mask {
   height: 100%;
   overflow: hidden;
   background-attachment: fixed;
-  background-color: rgba(0,0,0,0.3);
 }
 body.dark .flex-center {
   display: -webkit-box;
@@ -820,7 +819,6 @@ body.dark .flex-center {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 100%;
 }
 body.dark .white-text {
   color: #fff;
