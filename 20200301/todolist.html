@@ -26,7 +26,6 @@
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
@@ -71,7 +70,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/">首页</a>
+            <a class="nav-link ripple-effect" href="/">首页</a>
           </li>
         
           
@@ -79,7 +78,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
+            <a class="nav-link ripple-effect" href="/archives/">归档</a>
           </li>
         
           
@@ -87,7 +86,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
+            <a class="nav-link ripple-effect" href="/categories/">分类</a>
           </li>
         
           
@@ -95,7 +94,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
+            <a class="nav-link ripple-effect" href="/tags/">标签</a>
           </li>
         
           
@@ -103,7 +102,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/links/">友链</a>
+            <a class="nav-link ripple-effect" href="/links/">友链</a>
           </li>
         
           
@@ -111,7 +110,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/about/">关于</a>
+            <a class="nav-link ripple-effect" href="/about/">关于</a>
           </li>
         
           
@@ -119,7 +118,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/tools/">工具</a>
+            <a class="nav-link ripple-effect" href="/tools/">工具</a>
           </li>
         
           
@@ -127,12 +126,12 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/RSS/">RSS</a>
+            <a class="nav-link ripple-effect" href="/RSS/">RSS</a>
           </li>
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+            <a class="nav-link ripple-effect" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
@@ -196,7 +195,7 @@
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
       <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5 z-depth-3" id="board">
+        <div class="py-5" id="board">
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
@@ -397,14 +396,13 @@
     </main>
 
     
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+    <a id="scroll-top-button" href="#" role="button">
         <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
     
 
     
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
@@ -415,9 +413,9 @@
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <div class="mdui-textfield">
+            <input id="local-search-input" class="mdui-textfield-input" type="text" placeholder="请输入关键字" />
+          </div>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -433,14 +431,14 @@
     <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
       <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
     </div>
     
 
     
-
     
   </div>
 </footer>
@@ -449,15 +447,14 @@
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
 <script  src="/js/main.js" ></script>
 
 
-  <script  src="/js/lazyload.js" ></script>
+<script  src="/js/lazyload.js" ></script>
 
 
 
-  
+
   <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
   <script>
     $(document).ready(function () {
@@ -512,8 +509,8 @@
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+<script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+<script  src="/js/clipboard-use.js" ></script>
 
 
 
@@ -627,10 +624,8 @@
 
 
 
-
-
     <div align="center">
-        <button id="darkmode" class="rkmd-btn btn-flat waves-effect waves-dark"
+        <button id="darkmode" class="rkmd-btn btn-flat ripple-effect"
             onclick="switchDarkMode()">Day/Night</button>
     </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
