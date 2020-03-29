@@ -674,6 +674,27 @@ main section .wrap .holder.col-4:nth-child(n) {
 #dhex2rgba:focus {
   outline: 0 none !important;
 }
+#snackbar {
+  visibility: hidden;
+  min-width: 300px;
+  margin-left: -150px;
+  background-color: #323232;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 12px;
+  position: fixed;
+  z-index: 4;
+  left: 50%;
+  bottom: 0px;
+  font-size: 15px;
+}
+#snackbar.show {
+  visibility: visible;
+  z-index: 4;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 body.dark {
   background-color: #212121;
   color: #ccc;
@@ -913,26 +934,8 @@ body.dark .vbtn {
   background-color: #424242 !important;
   color: #e1e1e1 !important;
 }
-#snackbar {
-  visibility: hidden;
-  min-width: 300px;
-  margin-left: -150px;
-  background-color: #323232;
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 12px;
-  position: fixed;
-  z-index: 4;
-  left: 50%;
-  bottom: 0px;
-  font-size: 15px;
-}
-#snackbar.show {
-  visibility: visible;
-  z-index: 4;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+body.dark .index-btm {
+  color: #e1e1e1 !important;
 }
 @-moz-keyframes ripple {
   100% {
