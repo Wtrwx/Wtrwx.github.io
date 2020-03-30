@@ -373,7 +373,7 @@ c-8,0,-12,-0.7,-12,-2z M1001 80H400000v40H1014z'/></svg></span></span></span><sp
                 document.body.classList.remove('dark');
                 document.cookie = "dark=0;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = "100%";
+                header.style.height = banner_img_height;
                 //console.log('夜间模式关闭0');
             }
 
@@ -389,7 +389,7 @@ c-8,0,-12,-0.7,-12,-2z M1001 80H400000v40H1014z'/></svg></span></span></span><sp
                 document.body.classList.remove('dark');
                 document.cookie = "dark=2;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = "100%";
+                header.style.height = banner_img_height;
                 //console.log('夜间模式关闭2');
             }
 
@@ -684,8 +684,7 @@ c-8,0,-12,-0.7,-12,-2z M1001 80H400000v40H1014z'/></svg></span></span></span><sp
 
 
     <div align="center">
-        <button id="darkmode" class="rkmd-btn btn-flat ripple-effect"
-            onclick="switchDarkMode()">Day/Night</button>
+        <button id="darkmode" class="rkmd-btn btn-flat ripple-effect" onclick="switchDarkMode()">Day/Night</button>
     </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 

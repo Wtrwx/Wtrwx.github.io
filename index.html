@@ -315,9 +315,9 @@
       
       <i class="iconfont icon-tag"></i>
       
-      <a href="/tags/JavaScript/">JavaScript</a>&nbsp;
-      
       <a href="/tags/Blog/">Blog</a>&nbsp;
+      
+      <a href="/tags/JavaScript/">JavaScript</a>&nbsp;
       
       
     </div>
@@ -746,7 +746,7 @@ Wireshark/Fiddler抓包
                 document.body.classList.remove('dark');
                 document.cookie = "dark=0;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = "100%";
+                header.style.height = banner_img_height;
                 //console.log('夜间模式关闭0');
             }
 
@@ -762,7 +762,7 @@ Wireshark/Fiddler抓包
                 document.body.classList.remove('dark');
                 document.cookie = "dark=2;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = "100%";
+                header.style.height = banner_img_height;
                 //console.log('夜间模式关闭2');
             }
 
@@ -997,8 +997,7 @@ Wireshark/Fiddler抓包
 
 
     <div align="center">
-        <button id="darkmode" class="rkmd-btn btn-flat ripple-effect"
-            onclick="switchDarkMode()">Day/Night</button>
+        <button id="darkmode" class="rkmd-btn btn-flat ripple-effect" onclick="switchDarkMode()">Day/Night</button>
     </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 
