@@ -245,8 +245,8 @@
               <div style="display: flex;justify-content: space-between;">
                 <div align="left">
                   
-                  <a href="/20200204/hello-world.html"><i
-                      class="fas fa-arrow-left"></i>&nbspHello World！</a>
+                  <a href="/20200204/a-conservation-of-matter-momentum-and-angular.html"><i
+                      class="fas fa-arrow-left"></i>&nbsp一道物竞动量、角动量守恒水题</a>
                   
                 </div>
                 <div align="right">
@@ -264,12 +264,12 @@
   <div id="vcomments"></div>
   <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
   <script type="text/javascript">
     var notify = 'false' === 'true';
     var verify = 'false' === 'true';
-    var oldLoad = window.onload;
+    var oldLoadVa = window.onload;
     window.onload = function () {
+      oldLoadVa && oldLoadVa();
       new Valine({
         el: '#vcomments',
         notify: notify,
@@ -278,15 +278,13 @@
         app_key: "eGXXmoTvBtzHmwAzSNE6dD0g",
         placeholder: "说点什么",
         avatar: "/retro",
-        meta: ['nick', 'mail', 'link'],
+        meta: ["nick","mail","link"],
         pageSize: "10",
       });
-      oldLoad && oldLoad();
     };
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
-
 
             </div>
             
