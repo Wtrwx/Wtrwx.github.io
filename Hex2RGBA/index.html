@@ -222,12 +222,12 @@
             }
             var header = document.getElementById("header");
             var bgView = document.getElementById("background");
-
             function closeDarkMode0() {
                 document.body.classList.remove('dark');
                 document.cookie = "dark=0;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = banner_img_height;
+                var height = '80'
+                header.style.height = height + "%";
                 //console.log('夜间模式关闭0');
             }
 
@@ -243,7 +243,8 @@
                 document.body.classList.remove('dark');
                 document.cookie = "dark=2;path=/"
                 bgView.style.backgroundImage = "url(https://gitee.com/wtrwx/wtrwxIMG/raw/master/background.png)"
-                header.style.height = banner_img_height;
+                var height = '80'
+                header.style.height = height + "%";
                 //console.log('夜间模式关闭2');
             }
 
