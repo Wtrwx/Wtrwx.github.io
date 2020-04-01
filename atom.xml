@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtrwx.top/"/>
-  <updated>2020-03-31T15:46:20.643Z</updated>
+  <updated>2020-04-01T00:07:59.125Z</updated>
   <id>https://wtrwx.top/</id>
   
   <author>
@@ -21,19 +21,21 @@
     <link href="https://wtrwx.top/20200331/completely-remove-windows-smart-cloud-input-method.html"/>
     <id>https://wtrwx.top/20200331/completely-remove-windows-smart-cloud-input-method.html</id>
     <published>2020-03-31T15:37:26.000Z</published>
-    <updated>2020-03-31T15:46:20.643Z</updated>
+    <updated>2020-04-01T00:07:59.125Z</updated>
     
-    <content type="html"><![CDATA[<!-- build time:Tue Mar 31 2020 23:46:34 GMT+0800 (中国标准时间) --><p>刚刚电脑好好用着突然输入不了中文，一看输入法栏多出一个不认识的图标，名字叫智能云输入法。</p><p>程序列表找不到，全局搜SmartCloudInput删掉之后重启还会出现，推断是写进注册表了，百度一看，果不其然，老流氓软件了（火绒形同虚设）。</p><p>下面上清除方案：</p><p>1.Win+R快捷方式调出运行，输入<code>regedit</code>运行打开注册表，随便选中一个右键搜索，输入<code>智能云</code>。搜完之后找到那一项的所有内容，右键删掉。</p><p>2.C盘搜<code>SmartCloudInput</code>，用杀毒软件粉碎掉。</p><p>3.重新启动，完美解决。</p><!-- rebuild by neat -->]]></content>
+    <content type="html"><![CDATA[<!-- build time:Wed Apr 01 2020 08:08:14 GMT+0800 (中国标准时间) --><p>刚刚电脑好好用着突然输入不了中文，一看输入法栏多出一个不认识的图标，名字叫智能云输入法。</p><p>程序列表找不到，全局搜SmartCloudInput删掉之后重启还会出现，推断是写进注册表了，百度一看，果不其然，老流氓软件了（火绒形同虚设）。</p><p>下面上清除方案：</p><p>1.Win+R快捷方式调出运行，输入<code>regedit</code>运行打开注册表，随便选中一个右键搜索，输入<code>智能云</code>。搜完之后找到那一项的所有内容，右键删掉。</p><p>2.C盘搜<code>SmartCloudInput</code>，用杀毒软件粉碎掉。</p><p>3.重新启动，完美解决。</p><!-- rebuild by neat -->]]></content>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Tue Mar 31 2020 23:46:34 GMT+0800 (中国标准时间) --&gt;&lt;p&gt;刚刚电脑好好用着突然输入不了中文，一看输入法栏多出一个不认识的图标，名字叫智能云输入法。&lt;/p&gt;&lt;p&gt;程序列表找不到，全局搜SmartCloudInp
+        &lt;!-- build time:Wed Apr 01 2020 08:08:14 GMT+0800 (中国标准时间) --&gt;&lt;p&gt;刚刚电脑好好用着突然输入不了中文，一看输入法栏多出一个不认识的图标，名字叫智能云输入法。&lt;/p&gt;&lt;p&gt;程序列表找不到，全局搜SmartCloudInp
       
     
     </summary>
     
+    
+      <category term="Windows" scheme="https://wtrwx.top/categories/Windows/"/>
     
     
       <category term="Windows" scheme="https://wtrwx.top/tags/Windows/"/>
