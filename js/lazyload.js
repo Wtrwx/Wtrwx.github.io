@@ -1,3 +1,54 @@
-// build time:Sat Apr 11 2020 19:28:25 GMT+0800 (中国标准时间)
-(function(t){var n=Array.prototype.slice.call(document.querySelectorAll("img[srcset]"));function e(n){var e=n.getBoundingClientRect();var r=t.innerHeight||document.documentElement.clientHeight;return e.top>=0&&e.left>=0&&e.top<=r*3}function r(t,n){var e=new Image,r=t.getAttribute("src");e.onload=function(){t.srcset=r;n?n():null};e.srcset=r}function i(){for(var i=0;i<n.length;i++){if(e(n[i])){(function(t){var e=n[t];r(e,function(){n=n.filter(function(t){return e!==t})})})(i)}}if(n.length===0){t.removeEventListener("scroll",c)}}function o(t,n){clearTimeout(t.tId);t.tId=setTimeout(function(){t.call(n)},100)}var c=function(){o(i,t)};i();t.addEventListener("scroll",c)})(this);
-//rebuild by neat 
+(function (window) {
+	var images = Array.prototype.slice.call(document.querySelectorAll('img[srcset]'));
+
+	function elementInViewport(el) {
+		var rect = el.getBoundingClientRect();
+		var height = window.innerHeight || document.documentElement.clientHeight;
+		return (
+			rect.top >= 0
+			&& rect.left >= 0
+			&& rect.top <= height * 3
+		);
+	}
+	function loadImage(el, fn) {
+		var img = new Image(), src = el.getAttribute('src');
+		img.onload = function () {
+			el.srcset = src;
+			fn ? fn() : null;
+		};
+		img.srcset = src;
+	}
+
+	function processImages() {
+		for (var i = 0; i < images.length; i++) {
+			if (elementInViewport(images[i])) {
+				(function(index){
+					var loadingImage = images[index];
+					loadImage(loadingImage, function () {
+						images = images.filter(function(t) {
+							return loadingImage !== t;
+						});
+					});
+				})(i);
+			}
+		}
+		if (images.length === 0) {
+			window.removeEventListener('scroll', imageLazyLoader)
+		}
+	}
+
+	function throttle(method, context) {
+		clearTimeout(method.tId);
+		method.tId = setTimeout(function () {
+			method.call(context);
+		}, 100);
+	}
+
+	var imageLazyLoader = function () {
+		throttle(processImages, window);
+	};
+
+	processImages();
+
+	window.addEventListener('scroll', imageLazyLoader);
+})(this);
