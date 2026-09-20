@@ -14,7 +14,6 @@ exclude={
 'an-essential-application-for-writing-blogs-on-android':'用户要求精简低信息量内容：应用推荐截图，无具体技术分析',
 'baidu-network-disk-speed-limit-cracking-solution':'用户要求精简低信息量内容：下载方案罗列，无操作实现',
 'modapks':'用户要求精简低信息量内容：应用下载合集',
-'snpcrack':'用户要求精简低信息量内容：关键工具和步骤不完整，依赖过时环境',
 'android-signature-file-replacement-notice':'用户明确要求删除签名更换通知',
 'blog-beautification-log':'用户明确要求删除整篇',
 'a-conservation-water-problem-of-competitive-momentum-and-angular':'高中物理 / 物理竞赛',
@@ -87,7 +86,7 @@ for url,e in entries.items():
  if not (legacy/url.lstrip('/')).exists():report.append({'title':e.findtext('a:title',namespaces=ns),'url':url,'status':'not-restored','reason':'仅 RSS 残留，当前仓库没有对应页面，避免复活已移除内容'})
 (root/'migration').mkdir(exist_ok=True)
 (root/'migration/manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-lines=['# 文章迁移清单','','来源：`Wtrwx/Wtrwx.github.io`，原始提交 `5a99b1ef`。','保留原文、发布日期、标签、文章 URL；图片从个人图床迁入本地。','按用户要求精简：仅保留有具体步骤或技术分析的 3 篇文章。','','| 文章 | 处理 | 理由 |','|---|---|---|']
+lines=['# 文章迁移清单','','来源：`Wtrwx/Wtrwx.github.io`，原始提交 `5a99b1ef`。','保留原文、发布日期、标签、文章 URL；图片从个人图床迁入本地。','按用户要求精简：保留 3 篇技术实践文章及用户指定恢复的少年派教程，共 4 篇。','','| 文章 | 处理 | 理由 |','|---|---|---|']
 for r in report:lines.append(f"| {r['title']} | {r['status']} | {r['reason']} |")
 lines+=['','## 回滚与恢复','','旧站完整内容仍在 Git 历史中。迁移未重写历史；可从原始提交导出。','`scripts/migrate.py` 可从旧站导出目录和图床仓库重新生成保留文章。','','## 旧工具页','','旧站 Hex2RGBA、OnlinePython、links、tools 等独立页面未纳入此次文章迁移。','旧 `/archives/` 重定向到文章列表；旧 `/atom.xml` 继续提供 Atom 订阅。']
 (root/'migration/REPORT.md').write_text('\n'.join(lines)+'\n')
