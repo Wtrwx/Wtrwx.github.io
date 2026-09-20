@@ -11,6 +11,7 @@ from markdownify import markdownify
 root=Path(__file__).resolve().parents[1]
 legacy, images=map(Path,sys.argv[1:])
 exclude={
+'android-signature-file-replacement-notice':'用户明确要求删除签名更换通知',
 'blog-beautification-log':'用户明确要求删除整篇',
 'a-conservation-water-problem-of-competitive-momentum-and-angular':'高中物理 / 物理竞赛',
 'superlevel-college-entrance-examination-physics-questions':'高中物理 / 物理竞赛',
