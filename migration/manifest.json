@@ -9,7 +9,7 @@
     "title": "Hello World！",
     "url": "/20200204/hello-world.html",
     "status": "excluded",
-    "reason": "旧站欢迎页，非技术文章（待确认）"
+    "reason": "旧站欢迎页，非技术文章"
   },
   {
     "title": "QQ浏览器签名校验破解",
@@ -20,8 +20,8 @@
   {
     "title": "SNP-Crack",
     "url": "/20200206/snpcrack.html",
-    "status": "kept",
-    "reason": "技术内容；未见整篇转载声明"
+    "status": "excluded",
+    "reason": "用户要求精简低信息量内容：关键工具和步骤不完整，依赖过时环境"
   },
   {
     "title": "超纲的高考物理题",
@@ -39,19 +39,19 @@
     "title": "Page not found",
     "url": "/20200207/page-not-found.html",
     "status": "excluded",
-    "reason": "日常纪念文章，非技术内容（待确认）"
+    "reason": "日常纪念文章，非技术内容"
   },
   {
     "title": "Android上写Blog的必备应用",
     "url": "/20200208/an-essential-application-for-writing-blogs-on-android.html",
-    "status": "kept",
-    "reason": "技术内容；未见整篇转载声明"
+    "status": "excluded",
+    "reason": "用户要求精简低信息量内容：应用推荐截图，无具体技术分析"
   },
   {
     "title": "百度网盘限速破解方案",
     "url": "/20200210/baidu-network-disk-speed-limit-cracking-solution.html",
-    "status": "kept",
-    "reason": "技术内容；未见整篇转载声明"
+    "status": "excluded",
+    "reason": "用户要求精简低信息量内容：下载方案罗列，无操作实现"
   },
   {
     "title": "如何科学地立扫把？",
@@ -62,8 +62,8 @@
   {
     "title": "Mod-apks",
     "url": "/20200222/modapks.html",
-    "status": "kept",
-    "reason": "技术内容；未见整篇转载声明"
+    "status": "excluded",
+    "reason": "用户要求精简低信息量内容：应用下载合集"
   },
   {
     "title": "Bmap V7.0.72 破解",
@@ -81,13 +81,13 @@
     "title": "Todo-list",
     "url": "/20200301/todolist.html",
     "status": "excluded",
-    "reason": "高中学习待办，非技术内容（待确认）"
+    "reason": "高中学习待办，非技术内容"
   },
   {
     "title": "一些经常用到的Java代码",
     "url": "/20200310/some-frequently-used-java-code.html",
     "status": "excluded",
-    "reason": "原文声明混合网络代码与原创，无法区分来源（待确认）"
+    "reason": "原文声明混合网络代码与原创，无法区分来源"
   },
   {
     "title": "博客美化日志",
@@ -105,7 +105,7 @@
     "title": "生物必修二提纲",
     "url": "/20200421/biological-compulsory-two-outline.html",
     "status": "excluded",
-    "reason": "高中生物学习资料，非技术内容（待确认）"
+    "reason": "高中生物学习资料，非技术内容"
   },
   {
     "title": "Java代码精简之道",

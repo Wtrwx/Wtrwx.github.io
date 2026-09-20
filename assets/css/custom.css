@@ -14,3 +14,25 @@ img { max-width: 100%; height: auto; }
 .body { overflow-wrap: anywhere; }
 footer { font-size: .8rem; }
 @media (max-width: 640px) { .content { padding: 20px; } h1.title { font-size: 1.5rem; } header nav { gap: .7rem; } }
+
+/* Quiet monochrome accents over Archie's default crimson and purple. */
+:root {
+  --color-primary: #525252;
+  --color-primary-hover: #f5f5f5;
+  --color-border: #dedede;
+  --color-callout: #525252;
+  --color-background-toc: #fafafa;
+  --color-background-pre: #fafafa;
+  --color-background-draft: #f5f5f5;
+}
+a { border-bottom: 1px solid #d4d4d4; border-block-end: 1px solid #d4d4d4; }
+a:hover, a:focus { background: transparent; color: #111; border-color: #737373; outline: none; }
+a:focus-visible { outline: 2px solid #737373; outline-offset: 4px; }
+header a, .list-item .title a { border-bottom: 0; border-block-end: 0; }
+header a:hover, .list-item .title a:hover { text-decoration: underline; text-decoration-color: #aaa; text-underline-offset: .3em; }
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before { color: #aaa; }
+.readmore { color: #737373; }
+.soc:hover, .soc:focus { color: #111; }
+footer { border-top: 1px solid #e5e5e5; border-block-start: 1px solid #e5e5e5; }
+::selection { background: #e5e5e5; color: #171717; }
+::-moz-selection { background: #e5e5e5; color: #171717; }
