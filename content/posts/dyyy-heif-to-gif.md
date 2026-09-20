@@ -1,8 +1,8 @@
 {
-  "title": "DYYY 的 HEIF 转 GIF：解码、帧时长与相册保存",
+  "title": "DYYY 的 HEIF 转 GIF：逐字节解析 mvhd 时长",
   "date": "2026-09-20T00:00:00+08:00",
   "url": "/posts/dyyy-heif-to-gif/",
-  "description": "从 DYYY 的表情包保存实现出发，拆解宿主解码器复用、仅保留解码器逐帧时长，以及 GIF 写入与资源清理。",
+  "description": "从 box 长度、大端序和 version 0/1 字段布局出发，详细解析 DYYY 如何读取 mvhd，并将容器时长用于 GIF 帧延迟回退。",
   "tags": ["DYYY", "iOS", "Objective-C", "图像处理"],
   "toc": true,
   "draft": false
@@ -10,7 +10,7 @@
 
 DYYY 的表情包保存，需要把应用内部使用的图片资源转换成方便保存、分享的文件。对于 HEIF 动画，这件事至少有三个环节：**取出帧、确定每帧停留多久、把结果写进 GIF**。取到了图片，并不代表还原了动画；写出了 GIF，也不代表播放节奏正确。
 
-这篇文章以 DYYY 的 [`58fb82d`](https://github.com/Wtrwx/DYYY/commit/58fb82dcd3268a498517f449cb596d82cdb0558b) 为起点，梳理解码和保存流程，并调整帧时长策略：**只采用解码器提供的逐帧时长，缺失或无效时终止转换。** 下文的严格时长检查是拟采用的方案；链接中的源码仍包含平均时长和固定默认值回退，尚未按此修改。
+这篇文章重点拆解 HEIF 转 GIF 中的 `mvhd` 时长解析：从原始字节找到容器字段，再把时间单位换成秒，最后接入 GIF 帧延迟回退。代码以本文整理时 DYYY `main` 分支的最新提交 [`6bdc7c3`](https://github.com/Wtrwx/DYYY/commit/6bdc7c35c60620f4e914d07f812b9e9478b86542) 为准，重点看 `DYYYUtils.m` 的转换方法和 `DYYYManager.m` 的保存流程。这里记录的是这份源码的行为，不把它当成对所有 HEIF 文件、所有抖音版本的兼容承诺。
 
 ## 从保存入口找到原始数据
 
@@ -68,52 +68,250 @@ CGImageRef imageRef = frame.image.CGImage;
 
 `CGImageRef` 才是交给 GIF 写入器的像素图像。当前实现逐帧取得图像并写入，没有先在业务代码里建立一个包含所有帧的 `UIImage` 数组；但原始 `NSData` 和解码器仍在内存中，解码器是否缓存帧也不受这段循环控制，因此不能据此说它是恒定内存的流式转码。
 
-提交历史里，项目曾在 2025 年 5 月引入、随后移除 `libheif` 相关依赖。到本文对应的版本，转换路径使用的是宿主解码器加 ImageIO。历史能说明实现路线发生过变化，不能直接证明某条路线在所有设备上都更快。
+## 从容器字节里找到 mvhd
 
-## 每帧多久，就保留多久
+当解码器能取出帧，却没有提供有效的帧时长时，DYYY 会尝试从原始数据里读取总时长。相关代码集中在三个函数：
 
-每帧都有图像，还需要一个停留时长。动画里的停顿、加速和重复动作，都依赖这份时间信息。
+```text
+DYYYUtilsHEIFDurationFromData(data)
+  └─ DYYYUtilsParseHEIFDuration(bytes, length)
+       └─ 找到 moov，进入它的 payload
+            └─ DYYYUtilsParseMVHDDuration(bytes, length)
+                 └─ 找到 mvhd，读取 timescale 和 duration
+```
 
-调整后的方案只使用 `YYImageFrame.duration`。不再读取容器总时长来平均分配，也不再把异常值统一改成 `0.1` 秒。总时长和帧数无法告诉我们每一帧原本停留多久，用平均值填补会丢掉这部分信息。
+这里的目标是读取资源中可用的 movie header 时间信息。它不负责解码 HEVC 图像，也不会仅凭 `mvhd` 重建每一帧的播放时刻。对于没有这条 box 路径的资源，代码返回 `0`，表示没有取得可用的总时长。
 
-例如，两帧分别停留 `0.05` 秒和 `0.35` 秒，总时长是 `0.4` 秒。如果改成每帧 `0.2` 秒，总播放时间虽然相同，动作节奏却已经不同。
+### 先理解 box 的边界
 
-这里的判断只回答一个问题：解码器是否给出了有效的正数时长？
+这段解析面对的是按 box 组织的字节数据。普通 box 的开头有 8 个字节：
 
-| 解码器提供的时长 | 处理方式 |
-|---|---|
-| 有限且大于 0 | 按原值传给 GIF 写入器 |
-| 0、负数、NaN 或无穷大 | 终止转换，返回失败并清理临时输出 |
+```text
+相对 box 起点的偏移
 
-对应的检查可以直接放在写帧循环中。下面是拟采用的逻辑片段，不是现有版本的逐字摘录：
+0               4               8
++---------------+---------------+----------------------+
+| size：4 字节  | type：4 字节  | payload ...          |
++---------------+---------------+----------------------+
+
+size 包含头部本身，不只是 payload 的长度。
+type 是四字节标识，例如 moov、mvhd、mdat。
+```
+
+`position` 表示当前 box 在本层数据中的起点，`length` 表示本层解析范围的长度。读完一个 box 后，游标移动的是完整的 `rawSize`：
 
 ```objc
-CGFloat delay = frame.duration;
-if (!isfinite(delay) || delay <= 0) {
-    // 跳转到统一失败收尾，释放 destination 并删除临时文件。
-    success = NO;
+position += (NSUInteger)rawSize;
+```
+
+不能每次只加 8，也不能从当前位置一直搜索字符串 `mvhd`。压缩数据内部也可能碰巧出现相同的四个字节；只有从正确的 box 边界读取 type，才能把结构字段和普通数据区分开。
+
+DYYY 在顶层遍历中寻找 `moov`，找到后把它的 payload 交给下一层。内层再遍历 `moov` 的直接子 box，寻找 `mvhd`。两层使用相同的长度处理方式，区别只在于寻找的 type 和找到后的动作。
+
+### size 的三种情况
+
+读取最前面的 32 位 `size` 后，不能立即把它当成最终长度：
+
+| 初始 size | 解释 | 头部长度 |
+|---|---|---:|
+| 普通长度值 | 整个 box 的字节数 | 8 |
+| `1` | 真正长度在后面的 64 位 `largesize` 中 | 16 |
+| `0` | 本实现按延伸到当前解析范围末尾处理 | 8 |
+
+扩展长度的布局如下：
+
+```text
+0               4               8                       16
++---------------+---------------+-----------------------+----------+
+| size = 1      | type          | largesize：8 字节      | payload  |
++---------------+---------------+-----------------------+----------+
+```
+
+注意：使用扩展长度时，type 仍在 `+4`，移动的是 payload 起点。源码因此用变量 `header` 保存 8 或 16，而不是写死 `payload = bytes + position + 8`。
+
+代码中的处理是：
+
+```objc
+uint64_t rawSize = DYYYUtilsReadUInt32BigEndian(bytes + position);
+NSUInteger header = 8;
+
+if (rawSize == 1) {
+    if (position + 16 > length) {
+        break;
+    }
+    rawSize = DYYYUtilsReadUInt64BigEndian(bytes + position + 8);
+    header = 16;
+} else if (rawSize == 0) {
+    rawSize = length - position;
+}
+```
+
+进入 `moov` 的下一层时，传入的是：
+
+```objc
+bytes + position + header    // 子范围起点
+(NSUInteger)rawSize - header // 子范围长度
+```
+
+这样，内层的 `position = 0` 指向 `moov` 中的第一个子 box，而不是再次读取 `moov` 自己。内层也不能越过父 box 的末尾去读取后续顶层数据。
+
+### 多字节整数要按大端序读取
+
+比如四个字节 `00 00 03 E8`，表示整数 `1000`。不能直接把这个地址强转成 `uint32_t *` 再解引用：那会受宿主字节序和内存对齐影响。
+
+DYYY 的 32 位读取函数逐字节移位：
+
+```objc
+static uint32_t DYYYUtilsReadUInt32BigEndian(const uint8_t *bytes) {
+    return ((uint32_t)bytes[0] << 24)
+         | ((uint32_t)bytes[1] << 16)
+         | ((uint32_t)bytes[2] << 8)
+         |  (uint32_t)bytes[3];
+}
+```
+
+先转为 `uint32_t`，再移位和按位或，避免让字节值经过不合适的有符号整数运算。64 位版本则从左到右循环：
+
+```objc
+uint64_t value = 0;
+for (NSUInteger i = 0; i < 8; i++) {
+    value = (value << 8) | (uint64_t)bytes[i];
+}
+```
+
+这两个函数本身没有长度参数，不负责检查能不能读满 4 或 8 字节。边界检查必须由调用方在调用前完成。
+
+### 为什么 version 0 是 +12 和 +16
+
+找到 `mvhd` 后，代码定义：
+
+```objc
+const uint8_t *payload = bytes + position + header;
+NSUInteger payloadLength = (NSUInteger)rawSize - header;
+uint8_t version = payload[0];
+```
+
+`mvhd` 的 payload 开头还包含 **1 字节 version + 3 字节 flags**。这 4 字节没有计入前面普通 box 的 8 字节头部。讨论字段偏移时，必须先说清从哪里算起。
+
+version 0 的时间相关字段布局为：
+
+| 相对 payload 的偏移 | 长度 | 字段 |
+|---:|---:|---|
+| 0 | 1 | version |
+| 1 | 3 | flags |
+| 4 | 4 | creation_time |
+| 8 | 4 | modification_time |
+| 12 | 4 | timescale |
+| 16 | 4 | duration |
+
+因此，读取时长需要至少 20 字节 payload：
+
+```objc
+uint32_t timescale = DYYYUtilsReadUInt32BigEndian(payload + 12);
+uint32_t duration  = DYYYUtilsReadUInt32BigEndian(payload + 16);
+```
+
+这里的“至少 20 字节”只是**读到 duration 字段所需的最短前缀**，不是一个完整 `mvhd` 的全部长度。后面还有其他字段，当前提取时长的函数不读取它们，也不验证整个 header 的语义。
+
+如果是普通 8 字节 box 头，timescale 位于 box 起点的 `8 + 12 = 20`；如果是 16 字节扩展头，就位于 `16 + 12 = 28`。始终相对 payload 取偏移，可以把这两种头部布局统一起来。
+
+### version 1 为什么要换偏移
+
+version 1 把 creation_time、modification_time 和 duration 扩展成 64 位，timescale 仍然是 32 位。字段布局变成：
+
+| 相对 payload 的偏移 | 长度 | 字段 |
+|---:|---:|---|
+| 0 | 1 | version |
+| 1 | 3 | flags |
+| 4 | 8 | creation_time |
+| 12 | 8 | modification_time |
+| 20 | 4 | timescale |
+| 24 | 8 | duration |
+
+读取 duration 的末尾需要到 payload 第 32 字节，所以源码在这个分支单独检查 `payloadLength < 32`，随后读取：
+
+```objc
+uint32_t timescale = DYYYUtilsReadUInt32BigEndian(payload + 20);
+uint64_t duration  = DYYYUtilsReadUInt64BigEndian(payload + 24);
+```
+
+如果仍按 version 0 的偏移读，取到的可能是时间戳字段的一部分，而不是 timescale。这种错误未必立刻崩溃，更可能得到一个看似合法却完全错误的播放时长。
+
+### 用一组字节算一遍
+
+下面是构造的 version 0 **payload 前 20 字节**，只用来说明字段读取，不是完整 HEIF 文件，也不是完整 `mvhd`：
+
+```text
+偏移  字节             含义
+00    00               version = 0
+01    00 00 00         flags
+04    00 00 00 00      creation_time（示例占位）
+08    00 00 00 00      modification_time（示例占位）
+12    00 00 03 E8      timescale = 1000
+16    00 00 09 60      duration  = 2400
+```
+
+`timescale` 表示一秒对应多少个时间单位，不是帧率。`duration` 使用同一时间单位，所以：
+
+```text
+totalSeconds = 2400 / 1000 = 2.4 秒
+```
+
+源码先把两个整数转换成 `NSTimeInterval`，再做除法：
+
+```objc
+if (timescale > 0) {
+    return (NSTimeInterval)duration / (NSTimeInterval)timescale;
+}
+```
+
+如果先做整数除法再转换，`2400 / 1000` 会先变成 `2`，小数部分就丢了。检查 `timescale > 0` 则是为了避免除零。
+
+假设解码器报告 24 帧，那么写入函数可据此得到 `2.4 / 24 = 0.1` 秒的平均回退值。这个值只有在某帧的解码器时长无效时才会被使用；正常的逐帧时长依然优先。
+
+### 边界检查做到了哪里
+
+当前实现先确认剩余数据足够读取头部，再检查：
+
+```objc
+if (rawSize < header || position + rawSize > length) {
     break;
 }
 ```
 
-`success` 需要由完整写入流程管理：只有全部帧都通过检查、全部写入，而且 `CGImageDestinationFinalize` 成功，才能最终置为成功。不能在循环中发现异常后，又用一次 finalize 的结果覆盖失败状态。
+前半句防止出现“box 总长度比头部还短”的情况；后半句试图确保 box 不越过当前范围。遇到截断或错误长度时，代码停止这一层扫描，不尝试跳到某个猜测位置继续解析。找不到有效结果则返回 `0`。
 
-这里也不保留旧代码的 `delay < 0.01` → `0.1` 秒规则。只要解码器返回的是有效正数，就不在应用层主动放慢这一帧。不过，GIF 本身的时间表示精度，以及不同播放器对短延迟的处理，仍会影响最终播放效果；把原值传进去，不等于输出端能无限精确地保留它。
+当前检查使用 `position + rawSize` 判断末尾；这段加法没有单独处理整数溢出，因此不能将它视为对任意恶意输入都完备的边界验证。
 
-这项选择会让部分缺少时长的资源转换失败。失败原因是无法可靠保留时间信息，而不是没有取到图像。调用方应提示“无法读取有效帧时长”，而不是把它笼统归为文件损坏。
+这仍不是一个完整的容器校验器。当前代码只关心能够读取时长的那段前缀，没有验证所有后续字段，也没有从轨道采样表恢复逐帧时间。因此应把返回值理解为**这条资源路径下可用的总时长候选值**，并结合实际帧数和输出播放效果验证。
 
-## 删除总时长推算这条支路
+## 总时长怎样接回 GIF 帧时长
 
-既然不再使用平均时长，HEIF 转 GIF 路径就不需要解析 `moov/mvhd`。转换器只消费解码器提供的帧图像和帧时长，写入函数也不再需要 `fallbackTotalDuration` 参数。
+`DYYYUtilsHEIFDurationFromData` 返回的值作为 `fallbackTotalDuration` 传给 GIF 写入函数。写入器用解码器的帧数得到平均值，然后逐帧决定采用哪个时长。
 
-相对于链接中的基线版本，需要调整的地方是：
+| 解码器给出的时长 | 当前处理 |
+|---|---|
+| 有限，且不小于 0.01 秒 | 保留原值 |
+| 非有限值或不大于 0，且存在有效总时长 | 使用总时长 ÷ 帧数，再做归一化 |
+| 正数，但小于 0.01 秒 | 直接归一化为 0.1 秒 |
+| 没有可用回退值 | 归一化为 0.1 秒 |
 
-- 从 `convertHeicToGif:completion:` 删除 HEIF 总时长读取及传递。
-- 从 GIF 写入函数删除总时长除以帧数的计算。
-- HEIF 路径不再调用把异常时长归一化为 `0.1` 秒的函数。
-- 任意帧图像或时长不可用，都进入统一失败收尾。
+对应源码是：
 
-当前 GIF 写入辅助函数还被其他转换路径复用。实际修改源码时，应明确严格策略的作用范围，避免顺手改变 WebP 等路径的行为；相关解析函数也应在确认没有其他调用后再移除。本文先确定 HEIF 路径的策略。
+```objc
+CGFloat frameDuration = frame.duration;
+if ((!isfinite(frameDuration) || frameDuration <= 0) &&
+    fallbackFrameDuration > 0) {
+    frameDuration = fallbackFrameDuration;
+}
+CGFloat delay = DYYYUtilsNormalizedDelay(frameDuration);
+```
+
+`DYYYUtilsNormalizedDelay` 会把非有限值和小于 `0.01` 秒的值改为 `0.1` 秒。这意味着一个重要细节：**正数但过短的解码器时长，不会先尝试容器平均值，而是直接走默认值。**
+
+另外，平均回退没有做“剩余时长重新分配”。如果只有部分帧缺少时长，代码仍给这些帧使用 `总时长 / 全部帧数`，不会先减掉其他有效帧的时长。由此生成的 GIF 总时长不一定等于 `mvhd` 中读出的总时长。
+
+例如，总时长为 1 秒、两帧中第一帧时长为 0.2 秒、第二帧时长缺失，当前逻辑会给第二帧补 0.5 秒，合计 0.7 秒，而不是 1 秒。这个例子说明了回退的定位：在信息不完整时给出可用估计，不能保证恢复原始时间轴。
 
 ## 让 ImageIO 负责 GIF 写入
 
@@ -133,9 +331,9 @@ CGImageDestinationAddImage(dest, imageRef,
 
 这里写入的是普通 GIF delay 属性，没有同时写入 unclamped delay。最终播放速度还要看 GIF 编码和播放器对时长的处理，不能把传入的浮点数等同于最终显示设备上的精确停留时间。
 
-成功条件也需要随之收紧。基线实现用 `hasFrame` 记录是否至少写入一帧，遇到空图像会跳过；拟采用的方案要求每一帧都有可用图像和有效时长，实际写入数量等于预期帧数，再由 `CGImageDestinationFinalize` 确认输出成功。无论成功或失败，都要 `CFRelease` 释放目标对象。
+另一个细节是成功条件。代码用 `hasFrame` 记录是否至少写入过一帧，再调用 `CGImageDestinationFinalize`，以它的返回值判断写入结果，最后 `CFRelease` 释放目标对象。
 
-这样可以避免跳过坏帧后悄悄改变动画时长。验证时还应重新读取生成文件，检查帧数、时长和实际播放效果。
+如果某帧没有可用的 `CGImageRef`，循环会跳过它。这样不会把空图像传给写入器，但也意味着成功标志本身不足以证明“原始帧完整保留”：预期帧数仍然是解码器报告的数量，坏帧的时长也没有补偿。要确认输出质量，还应重新读取生成文件，检查帧数和播放时长。
 
 ## 转换结束之后，才是相册保存
 
@@ -147,25 +345,16 @@ CGImageDestinationAddImage(dest, imageRef,
 
 这个顺序不能反过来。转换器返回成功，只说明文件已经生成；相册保存是另一个异步操作，过早清理会让保存阶段失去输入文件。代码也分别保留了“转换失败”和“保存失败”的反馈。
 
-## 这份实现还需要怎样验证
+## 当前实现的适用范围
 
-本文的严格时长方案尚未落入 DYYY 源码，也尚未进行编译和真机验证。实现后需要检查正常资源能否保留节奏，以及异常资源是否正确失败和清理。
+这条路径依赖宿主的 `YYImageDecoder` 提供帧图像，并优先采用它的帧时长。`mvhd` 只在时长缺失时提供总时长参考，不替代逐帧时间信息。
 
-后续验证应重点覆盖这些情况：
+解析失败返回 `0`，转换继续尝试解码器时长或默认值；解码器没有帧、没有图像成功写入，或 GIF finalize 失败，则转换返回失败。单帧资源也可能生成单帧 GIF，所以转换成功不等于资源一定包含动画。
 
-- **非匀速动画**：检查长停顿和短动作，确认逐帧时长按解码器原值传入。
-- **无效时长**：注入 0、负数、NaN 和无穷大，确认转换失败，不发布残缺 GIF，临时文件得到清理。
-- **短时长**：检查小于 `0.01` 秒的有效正数，确认应用层没有替换成 `0.1` 秒，并比较目标播放器的实际表现。
-- **静态或损坏资源**：`frameCount == 1` 仍可能写出单帧 GIF；只检查 `frameCount > 0` 无法证明输出是动图。坏帧应触发失败，而不是被静默跳过。
-- **不同宿主版本**：确认 `YYImageDecoder` 和 `bd_webURL` 仍可用，而不是仅凭类名和文件后缀推断支持情况。
-- **大文件与并发保存**：观察峰值内存、处理时间、取消行为及临时文件清理。当前转换方法没有独立的取消接口，也没有显式设置帧数、尺寸和输入文件大小上限。
+当前转换在后台队列执行，没有独立取消接口，也没有显式设置输入大小、帧数和图像尺寸上限。本文说明的是源码中的处理逻辑，不包含新增的真机性能或兼容性测试结果。
 
-对这个功能而言，最终值得检查的是：保存下来的文件有没有保留动作、节奏是否接近原资源，以及失败时能否明确收尾。文件名变成 `.gif`，只是整个过程的最后一个表面结果。
+## 对应源码
 
-## 源码与历史
-
-- [基线实现：解码器调用、旧时长回退与 GIF 写入（DYYYUtils.m）](https://github.com/Wtrwx/DYYY/blob/58fb82dcd3268a498517f449cb596d82cdb0558b/DYYYUtils.m)
-- [媒体分流与相册保存：DYYYManager.m](https://github.com/Wtrwx/DYYY/blob/58fb82dcd3268a498517f449cb596d82cdb0558b/DYYYManager.m)
-- [评论区保存入口：DYYY.xm](https://github.com/Wtrwx/DYYY/blob/58fb82dcd3268a498517f449cb596d82cdb0558b/DYYY.xm)
-- [引入 libheif 相关依赖](https://github.com/Wtrwx/DYYY/commit/bf3665b55ac94eb11534005ba3cac033bede72e1)与[随后移除](https://github.com/Wtrwx/DYYY/commit/6105b567f4446948fdcd081a4a34d5ff0fd8c917)
-- [旧总时长回退的历史提交](https://github.com/Wtrwx/DYYY/commit/95134fe81378226df32b33a5862f97652e9b78be)（本文方案不再采用）
+- [转换、解码器调用、时长解析与 GIF 写入：DYYYUtils.m](https://github.com/Wtrwx/DYYY/blob/6bdc7c35c60620f4e914d07f812b9e9478b86542/DYYYUtils.m)
+- [媒体分流与相册保存：DYYYManager.m](https://github.com/Wtrwx/DYYY/blob/6bdc7c35c60620f4e914d07f812b9e9478b86542/DYYYManager.m)
+- [评论区保存入口：DYYY.xm](https://github.com/Wtrwx/DYYY/blob/6bdc7c35c60620f4e914d07f812b9e9478b86542/DYYY.xm)
