@@ -1,0 +1,56 @@
+baseURL = "https://wtrwx.github.io/"
+locale = "zh-cn"
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+title = "维他入我心"
+theme = "archie"
+enableRobotsTXT = true
+copyright = "© Wtrwx"
+summaryLength = 90
+[pagination]
+  pagerSize = 6
+[params]
+  mode = "light"
+  useCDN = false
+  mainSections = ["posts"]
+  subtitle = "记录技术、折腾与实践。"
+  description = "维他入我心的技术博客，记录 Android、编程与个人项目。"
+  customcss = ["css/custom.css"]
+[[params.social]]
+  name = "GitHub"
+  icon = "github"
+  url = "https://github.com/Wtrwx"
+[[params.social]]
+  name = "RSS"
+  icon = "rss"
+  url = "/atom.xml"
+[[menu.main]]
+  name = "首页"
+  url = "/"
+  weight = 1
+[[menu.main]]
+  name = "文章"
+  url = "/posts/"
+  weight = 2
+[[menu.main]]
+  name = "标签"
+  url = "/tags/"
+  weight = 3
+[[menu.main]]
+  name = "搜索"
+  url = "/search/"
+  weight = 4
+[[menu.main]]
+  name = "关于"
+  url = "/about/"
+  weight = 5
+[markup.highlight]
+  style = "github"
+  guessSyntax = true
+[outputFormats.RSS]
+  baseName = "atom"
+  mediaType = "application/atom+xml"
+[services.rss]
+  limit = 50
+[mediaTypes."application/atom+xml"]
+  suffixes = ["xml"]

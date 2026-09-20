@@ -1,0 +1,16 @@
+body { background: #fff; color: #252525; font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.85; }
+h1, h2, h3, h4, header, nav, footer, time { font-family: "Roboto Mono", "PingFang SC", "Microsoft YaHei", sans-serif; }
+.content { max-width: 820px; }
+header { gap: 1rem; flex-wrap: wrap; }
+header nav { display: flex; gap: .9rem; flex-wrap: wrap; }
+header nav a { margin: 0; }
+.site-description { color: #666; margin-bottom: 2.5rem; }
+.list-item { margin-bottom: 2.8rem; }
+.list-item .title { line-height: 1.5; }
+pre { overflow-x: auto; line-height: 1.65; }
+code { font-family: "Roboto Mono", monospace; }
+img { max-width: 100%; height: auto; }
+.legacy-note { color: #777; font-size: .85rem; border-left: 2px solid #ddd; padding-left: .8rem; margin: 1rem 0 2rem; }
+.body { overflow-wrap: anywhere; }
+footer { font-size: .8rem; }
+@media (max-width: 640px) { .content { padding: 20px; } h1.title { font-size: 1.5rem; } header nav { gap: .7rem; } }

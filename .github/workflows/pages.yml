@@ -1,0 +1,44 @@
+name: Build Hugo site
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hugo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Hugo 0.166.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download v0.166.0 --repo gohugoio/hugo --pattern hugo_0.166.0_linux-amd64.tar.gz --pattern hugo_0.166.0_checksums.txt --dir "$RUNNER_TEMP/hugo"
+          cd "$RUNNER_TEMP/hugo"
+          grep ' hugo_0.166.0_linux-amd64.tar.gz$' hugo_0.166.0_checksums.txt | sha256sum --check
+          tar -xzf hugo_0.166.0_linux-amd64.tar.gz hugo
+          echo "$RUNNER_TEMP/hugo" >> "$GITHUB_PATH"
+      - run: hugo --minify --panicOnWarning
+      - run: python3 scripts/verify.py public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,134 @@
+[
+  {
+    "title": "一道物竞动量、角动量守恒水题",
+    "url": "/20200204/a-conservation-water-problem-of-competitive-momentum-and-angular.html",
+    "status": "excluded",
+    "reason": "高中物理 / 物理竞赛"
+  },
+  {
+    "title": "Hello World！",
+    "url": "/20200204/hello-world.html",
+    "status": "excluded",
+    "reason": "旧站欢迎页，非技术文章（待确认）"
+  },
+  {
+    "title": "QQ浏览器签名校验破解",
+    "url": "/20200204/qq-browser-signature-verification-crack.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "SNP-Crack",
+    "url": "/20200206/snpcrack.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "超纲的高考物理题",
+    "url": "/20200206/superlevel-college-entrance-examination-physics-questions.html",
+    "status": "excluded",
+    "reason": "高中物理 / 物理竞赛"
+  },
+  {
+    "title": "如何在你的安卓手机上打造一个爆款个人博客?",
+    "url": "/20200207/how-to-create-an-explosive-personal-blog-on-your-android-phone.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "Page not found",
+    "url": "/20200207/page-not-found.html",
+    "status": "excluded",
+    "reason": "日常纪念文章，非技术内容（待确认）"
+  },
+  {
+    "title": "Android上写Blog的必备应用",
+    "url": "/20200208/an-essential-application-for-writing-blogs-on-android.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "百度网盘限速破解方案",
+    "url": "/20200210/baidu-network-disk-speed-limit-cracking-solution.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "如何科学地立扫把？",
+    "url": "/20200212/how-to-set-up-a-broom-scientifically.html",
+    "status": "excluded",
+    "reason": "物理科普，且包含引用内容"
+  },
+  {
+    "title": "Mod-apks",
+    "url": "/20200222/modapks.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "Bmap V7.0.72 破解",
+    "url": "/20200226/bmap-v7072-crack.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "质点的直线运动与刚体转动的比较",
+    "url": "/20200228/comparison-of-linear-motion-particle-and-rotation-rigid-body.html",
+    "status": "excluded",
+    "reason": "高中物理 / 物理竞赛"
+  },
+  {
+    "title": "Todo-list",
+    "url": "/20200301/todolist.html",
+    "status": "excluded",
+    "reason": "高中学习待办，非技术内容（待确认）"
+  },
+  {
+    "title": "一些经常用到的Java代码",
+    "url": "/20200310/some-frequently-used-java-code.html",
+    "status": "excluded",
+    "reason": "原文声明混合网络代码与原创，无法区分来源（待确认）"
+  },
+  {
+    "title": "博客美化日志",
+    "url": "/20200322/blog-beautification-log.html",
+    "status": "excluded",
+    "reason": "用户明确要求删除整篇"
+  },
+  {
+    "title": "Android签名文件更换通知",
+    "url": "/20200413/android-signature-file-replacement-notice.html",
+    "status": "kept",
+    "reason": "技术内容；未见整篇转载声明"
+  },
+  {
+    "title": "生物必修二提纲",
+    "url": "/20200421/biological-compulsory-two-outline.html",
+    "status": "excluded",
+    "reason": "高中生物学习资料，非技术内容（待确认）"
+  },
+  {
+    "title": "Java代码精简之道",
+    "url": "/20200510/java-code-streamlining.html",
+    "status": "excluded",
+    "reason": "明确转载：阿里巴巴中间件，作者常意"
+  },
+  {
+    "title": "彻底清除Windows智能云输入法",
+    "url": "/20200331/.html",
+    "status": "not-restored",
+    "reason": "仅 RSS 残留，当前仓库没有对应页面，避免复活已移除内容"
+  },
+  {
+    "title": "如何导出你少年派上的课件、视频",
+    "url": "/20200215/.html",
+    "status": "not-restored",
+    "reason": "仅 RSS 残留，当前仓库没有对应页面，避免复活已移除内容"
+  },
+  {
+    "title": "高考方法下的物竞题",
+    "url": "/20200205/.html",
+    "status": "not-restored",
+    "reason": "仅 RSS 残留，当前仓库没有对应页面，避免复活已移除内容"
+  }
+]

@@ -1,0 +1,45 @@
+{{ define "main" }}
+<main>
+  <article class="search-page">
+    <div class="title">
+      <h1 class="title">{{ .Title }}</h1>
+    </div>
+
+    {{ with .Content }}
+    <section class="body search-intro">
+      {{ . }}
+    </section>
+    {{ end }}
+
+    <section
+      class="search-panel"
+      data-search-root
+      {{ with .OutputFormats.Get "json" }}data-search-index-url="{{ .RelPermalink }}"{{ end }}>
+      <label class="search-label" for="search-query">搜索文章</label>
+      <input
+        id="search-query"
+        class="search-input"
+        data-search-input
+        type="search"
+        name="q"
+        autocomplete="off"
+        spellcheck="false"
+        aria-controls="search-results"
+        aria-describedby="search-help search-status"
+        placeholder="搜索标题、标签或正文">
+      <p id="search-help" class="search-hint">
+        输入关键词搜索全部文章，按 <kbd>/</kbd> 快速定位搜索框。
+      </p>
+      <p id="search-status" class="search-status" data-search-status aria-live="polite">
+        正在加载搜索索引…
+      </p>
+      <ul id="search-results" class="search-results" data-search-results></ul>
+    </section>
+
+    <noscript>
+      <p class="search-status search-status-error">请启用 JavaScript 使用站内搜索。</p>
+    </noscript>
+  </article>
+</main>
+<script defer src="{{ absURL "js/search.js" }}"></script>
+{{ end }}
