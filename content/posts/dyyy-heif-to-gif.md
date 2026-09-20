@@ -1,5 +1,5 @@
 {
-  "title": "DYYY 的 HEIF 转 GIF：逐字节解析 mvhd 时长",
+  "title": "DYYY 的抖音动态表情转 GIF：解析 HEVC 图像序列的 mvhd 时长",
   "date": "2026-09-20T00:00:00+08:00",
   "url": "/posts/dyyy-heif-to-gif/",
   "description": "从 box 长度、大端序和 version 0/1 字段布局出发，详细解析 DYYY 如何读取 mvhd，并将容器时长用于 GIF 帧延迟回退。",
@@ -8,9 +8,47 @@
   "draft": false
 }
 
-DYYY 的表情包保存，需要把应用内部使用的图片资源转换成方便保存、分享的文件。对于 HEIF 动画，这件事至少有三个环节：**取出帧、确定每帧停留多久、把结果写进 GIF**。取到了图片，并不代表还原了动画；写出了 GIF，也不代表播放节奏正确。
+DYYY 的表情包保存，需要把应用内部使用的图片资源转换成方便保存、分享的文件。对于本文讨论的 HEVC 编码 HEIF 图像序列，这件事至少有三个环节：**取出帧、确定每帧停留多久、把结果写进 GIF**。取到了图片，并不代表还原了动画；写出了 GIF，也不代表播放节奏正确。
 
-这篇文章重点拆解 HEIF 转 GIF 中的 `mvhd` 时长解析：从原始字节找到容器字段，再把时间单位换成秒，最后接入 GIF 帧延迟回退。代码以本文整理时 DYYY `main` 分支的最新提交 [`6bdc7c3`](https://github.com/Wtrwx/DYYY/commit/6bdc7c35c60620f4e914d07f812b9e9478b86542) 为准，重点看 `DYYYUtils.m` 的转换方法和 `DYYYManager.m` 的保存流程。这里记录的是这份源码的行为，不把它当成对所有 HEIF 文件、所有抖音版本的兼容承诺。
+这篇文章重点拆解抖音 HEVC 图像序列转 GIF 中的 `mvhd` 时长解析：从原始字节找到容器字段，再把时间单位换成秒，最后接入 GIF 帧延迟回退。代码以本文整理时 DYYY `main` 分支的最新提交 [`6bdc7c3`](https://github.com/Wtrwx/DYYY/commit/6bdc7c35c60620f4e914d07f812b9e9478b86542) 为准，重点看 `DYYYUtils.m` 的转换方法和 `DYYYManager.m` 的保存流程。
+
+## 真实样本与转换成品
+
+本文样本来自抖音评论区动态表情资源。更准确地说，它是 **HEVC 编码的 HEIF 图像序列**：HEIF 描述封装，HEVC 描述图像编码；文件扩展名是 `.heif`，但不是一张普通静态 HEIF 图片。
+
+实测 `ftyp` 的 major brand 为 `msf1`，compatible brands 为 `msf1`、`hevc`；图像序列轨道的 sample entry 为 `hvc1`，编码器字符串为 `BYTEVC1 Coding`。FFmpeg 将其识别并解码为 HEVC。这里的 BYTEVC1 是样本中的编码器标记，不能仅凭这个字符串认定它采用另一种独立的编码格式。
+
+- [下载原始 HEIF 图像序列（199,875 字节）](/samples/dyyy-heif-to-gif/douyin-sticker.heif)
+- [下载转换后的 GIF](/samples/dyyy-heif-to-gif/douyin-sticker.gif)
+
+![抖音动态表情转换后的 GIF](/samples/dyyy-heif-to-gif/douyin-sticker.gif)
+
+| 检查项 | 原始样本 | GIF 成品 |
+|---|---|---|
+| 尺寸 | 300 × 300 | 300 × 300 |
+| 帧数 | 89 | 89 |
+| 时长 | 2.937 秒 | 2.930 秒 |
+
+GIF 时长以百分之一秒表示，输出时间轴发生量化，因此与源文件有 0.007 秒的差异。
+
+这个样本的顶层结构和 `mvhd` 字段可以直接对应后文解析过程：
+
+```text
+文件偏移（十进制）  box    字节数
+0                   ftyp   24
+24                  moov   1077
+32                    mvhd 108
+140                   trak 961
+1101                mdat   198774
+
+mvhd payload 从文件偏移 40 开始，version = 0
+文件偏移 52：00 00 03 E8 → timescale = 1000
+文件偏移 56：00 00 0B 79 → duration  = 2937
+总时长：2937 / 1000 = 2.937 秒
+平均帧时长：2.937 / 89 = 0.033 秒
+```
+
+平均值验证了这个样本的容器时长与帧数之间的关系；DYYY 是否实际使用该回退值，仍取决于宿主解码器返回的逐帧时长。
 
 ## 从保存入口找到原始数据
 
@@ -57,7 +95,7 @@ if (![decoderInstance isKindOfClass:decoderClass]) {
 }
 ```
 
-这样做不需要在转换方法里另带一套 HEIF 解码库，但会依赖宿主现有的解码能力。**类名叫 `YYImageDecoder`，不等于任意环境里的同名类都支持这些 HEIF 资源。** 这里借用的是目标应用进程中实际存在的实现。
+这样做不需要在转换方法里另带一套 HEIF 解码库，但会依赖宿主现有的解码能力。**类名叫 `YYImageDecoder`，不等于任意环境里的同名类都支持这些 HEVC 图像序列资源。** 这里借用的是目标应用进程中实际存在的实现。
 
 取得解码器后，代码用 `frameCount` 遍历帧，再调用：
 
@@ -313,6 +351,54 @@ CGFloat delay = DYYYUtilsNormalizedDelay(frameDuration);
 
 例如，总时长为 1 秒、两帧中第一帧时长为 0.2 秒、第二帧时长缺失，当前逻辑会给第二帧补 0.5 秒，合计 0.7 秒，而不是 1 秒。这个例子说明了回退的定位：在信息不完整时给出可用估计，不能保证恢复原始时间轴。
 
+## 补充：UnclampedDelayTime 能否提供逐帧时长（iOS 未验证）
+
+ImageIO 为 HEIC 图像序列提供了 `kCGImagePropertyHEICSUnclampedDelayTime`。它从 **iOS 13 / macOS 10.15** 起可用，位于每帧属性的 `kCGImagePropertyHEICSDictionary` 中，值是以秒为单位的浮点数。[Apple 官方文档](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsunclampeddelaytime)
+
+这个 API 面向的是 **HEIC 图像序列的帧间播放时序**，表示显示下一张图像前应等待多久。`Unclamped` 表示未经最小延迟限制调整的时长：读取它，可以让动画播放或转码代码自行决定如何处理很短的帧间隔。它不是抖音或 BYTEVC1 专用接口，也不是 HEVC 解码器，更不是用于控制 GIF 写入的属性；GIF 对应另一个独立的键 `kCGImagePropertyGIFUnclampedDelayTime`。
+
+### 样本中观察到了什么
+
+对上面的真实样本，在 macOS 上调用 `CGImageSourceCopyPropertiesAtIndex`，首帧的 `{HEICS}` 字典返回：
+
+```text
+DelayTime          = 0.1 秒
+UnclampedDelayTime = 0.033 秒
+```
+
+后者与本样本的 `mvhd` 总时长除以帧数所得的 `2.937 / 89 = 0.033` 秒一致。这个样本里，普通 `DelayTime` 已经被调整，而 `UnclampedDelayTime` 保留了更短的帧间隔。遇到非等时长动画，仍需逐帧读取。
+
+### iOS 读取示例
+
+下面只演示读取某一帧的元数据。`source` 是通过原始资源数据创建的有效 `CGImageSourceRef`，`index` 必须小于 `CGImageSourceGetCount(source)`：
+
+```objc
+// iOS 13+；演示代码，未经过 iOS 真机验证。
+NSTimeInterval delay = 0;
+if (@available(iOS 13.0, *)) {
+    NSDictionary *props = CFBridgingRelease(
+        CGImageSourceCopyPropertiesAtIndex(source, index, NULL)
+    );
+    NSDictionary *heics = props[
+        (__bridge NSString *)kCGImagePropertyHEICSDictionary
+    ];
+    NSNumber *value = heics[
+        (__bridge NSString *)kCGImagePropertyHEICSUnclampedDelayTime
+    ];
+    if ([value isKindOfClass:NSNumber.class]) {
+        double seconds = value.doubleValue;
+        if (isfinite(seconds) && seconds > 0) {
+            delay = seconds;
+        }
+    }
+}
+// delay == 0 表示没有读到有效值，交给调用方决定回退策略。
+```
+
+目前只在 macOS 上读到了这些元数据，**iOS 真机尚未验证，也没有接入 DYYY**。另外，ImageIO 导出后续帧仍会失败，读取时长和解码图像要分开看。
+
+可以尝试继续用宿主 `YYImageDecoder` 取帧，用 ImageIO 补充逐帧时长。前提是两边的帧数和顺序对得上，再根据真机结果确定时长的优先级与回退方式。
+
 ## 让 ImageIO 负责 GIF 写入
 
 帧图像和时长准备好后，代码用 `CGImageDestinationCreateWithURL` 创建 GIF 目标，预期图像数量设为解码器的帧数。
@@ -335,23 +421,7 @@ CGImageDestinationAddImage(dest, imageRef,
 
 如果某帧没有可用的 `CGImageRef`，循环会跳过它。这样不会把空图像传给写入器，但也意味着成功标志本身不足以证明“原始帧完整保留”：预期帧数仍然是解码器报告的数量，坏帧的时长也没有补偿。要确认输出质量，还应重新读取生成文件，检查帧数和播放时长。
 
-## 转换结束之后，才是相册保存
-
-`convertHeicToGif:completion:` 把数据读取和转码放在全局后台队列，完成回调统一切回主线程。即使传入 URL 为空，失败回调也通过主队列发出，调用方不必根据不同失败路径猜测线程。
-
-输出文件名由原资源名加 UUID 组成，降低并发转换时同名覆盖的风险。转换失败会删除临时输出，并记录失败原因，例如数据为空、解码器不可用、没有帧或者 GIF 写入失败。
-
-`DYYYManager` 承担后续保存流程。在 `saveHeifSticker:` 这条路径中，转换成功后通过 `PHAssetCreationRequest` 把 GIF 文件作为照片资源提交给 PhotoKit。等相册操作回调后，再提示结果并删除临时文件。
-
-这个顺序不能反过来。转换器返回成功，只说明文件已经生成；相册保存是另一个异步操作，过早清理会让保存阶段失去输入文件。代码也分别保留了“转换失败”和“保存失败”的反馈。
-
-## 当前实现的适用范围
-
-这条路径依赖宿主的 `YYImageDecoder` 提供帧图像，并优先采用它的帧时长。`mvhd` 只在时长缺失时提供总时长参考，不替代逐帧时间信息。
-
-解析失败返回 `0`，转换继续尝试解码器时长或默认值；解码器没有帧、没有图像成功写入，或 GIF finalize 失败，则转换返回失败。单帧资源也可能生成单帧 GIF，所以转换成功不等于资源一定包含动画。
-
-当前转换在后台队列执行，没有独立取消接口，也没有显式设置输入大小、帧数和图像尺寸上限。本文说明的是源码中的处理逻辑，不包含新增的真机性能或兼容性测试结果。
+转换成功后，`DYYYManager` 通过 PhotoKit 将 GIF 保存到相册，等保存回调完成后再清理临时文件。
 
 ## 对应源码
 
