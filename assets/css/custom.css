@@ -36,3 +36,34 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before { color: 
 footer { border-top: 1px solid #e5e5e5; border-block-start: 1px solid #e5e5e5; }
 ::selection { background: #e5e5e5; color: #171717; }
 ::-moz-selection { background: #e5e5e5; color: #171717; }
+
+/* Keep the site's restrained palette readable when Archie's dark sheet is enabled. */
+html[data-theme="dark"] {
+  --color-primary-dark: #bcbcbc;
+  --color-border-dark: #666;
+}
+html[data-theme="dark"] body { background: #202124; color: #e8e8e8; }
+html[data-theme="dark"] .site-description,
+html[data-theme="dark"] .search-hint,
+html[data-theme="dark"] .search-result-meta,
+html[data-theme="dark"] .meta,
+html[data-theme="dark"] time,
+html[data-theme="dark"] .readmore { color: #bcbcbc; }
+html[data-theme="dark"] .legacy-note { color: #bcbcbc; border-left-color: #666; }
+html[data-theme="dark"] a { border-color: #666; }
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus { background: transparent; color: #fff; border-color: #bcbcbc; }
+html[data-theme="dark"] a:focus-visible { outline-color: #bcbcbc; }
+html[data-theme="dark"] header a:hover,
+html[data-theme="dark"] .list-item .title a:hover { text-decoration-color: #bcbcbc; }
+html[data-theme="dark"] h1::before,
+html[data-theme="dark"] h2::before,
+html[data-theme="dark"] h3::before,
+html[data-theme="dark"] h4::before,
+html[data-theme="dark"] h5::before,
+html[data-theme="dark"] h6::before { color: #aaa; }
+html[data-theme="dark"] .soc:hover,
+html[data-theme="dark"] .soc:focus { color: #fff; }
+html[data-theme="dark"] footer { border-color: #666; }
+html[data-theme="dark"] ::selection { background: #666; color: #fff; }
+html[data-theme="dark"] ::-moz-selection { background: #666; color: #fff; }

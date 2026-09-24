@@ -10,7 +10,7 @@ summaryLength = 90
 [pagination]
   pagerSize = 6
 [params]
-  mode = "light"
+  mode = "toggle"
   useCDN = false
   mainSections = ["posts"]
   subtitle = "记录技术、折腾与实践。"
