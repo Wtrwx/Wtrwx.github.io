@@ -15,7 +15,7 @@ summaryLength = 90
   mainSections = ["posts"]
   subtitle = "记录技术、折腾与实践。"
   description = "维他入我心的技术博客，记录 Android、编程与个人项目。"
-  customcss = ["css/custom.css"]
+  customcss = ["css/custom.css", "css/chroma.css"]
 [[params.social]]
   name = "GitHub"
   icon = "github"
@@ -46,6 +46,7 @@ summaryLength = 90
   weight = 5
 [markup.highlight]
   style = "github"
+  noClasses = false
   guessSyntax = true
 [outputFormats.RSS]
   baseName = "atom"
